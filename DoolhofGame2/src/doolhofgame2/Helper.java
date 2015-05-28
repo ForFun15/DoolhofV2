@@ -4,6 +4,7 @@
  */
 package doolhofgame2;
 
+import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 /**
@@ -15,7 +16,10 @@ public class Helper extends SpelItem {
     public Helper() {
         image = new ImageIcon(getClass().getResource("/resources/imgHelp.png")).getImage();
     }
-    //sdjhskdhdkjh
     
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g.drawImage(image, getX(), getY(), this);
+    }
     
 }

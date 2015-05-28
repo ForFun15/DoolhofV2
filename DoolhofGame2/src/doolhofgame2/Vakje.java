@@ -12,12 +12,12 @@ import javax.swing.JComponent;
  * @author Karen
  */
 public class Vakje extends JComponent {
-    
+
     public Image image;
-   //lkjfldkjf
+    public Vakje[] buren;
 
     public Vakje() {
-        
+        buren = new Vakje[4];
     }
 
     @Override
@@ -29,7 +29,4 @@ public class Vakje extends JComponent {
     public int getWidth() {
         return 30;
     }
-   
-    
-    
 }

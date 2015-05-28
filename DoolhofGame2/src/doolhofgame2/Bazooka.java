@@ -4,6 +4,7 @@
  */
 package doolhofgame2;
 
+import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 /**
@@ -14,6 +15,11 @@ public class Bazooka extends SpelItem {
 
     public Bazooka() {
         image = new ImageIcon(getClass().getResource("/resources/imgBaz.png")).getImage();
-    //lkkdjfldjfl
+    
+    }
+    
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g.drawImage(image, getX(), getY(), this);
     }
 }

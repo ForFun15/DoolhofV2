@@ -4,6 +4,7 @@
  */
 package doolhofgame2;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
@@ -24,6 +25,11 @@ public class Speler extends JComponent{
         this.positieY = 80;
         image = new ImageIcon(getClass().getResource("/resources/imgR.png")).getImage();
 
+    }
+    
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g.drawImage(image, getX(), getY(), this);
     }
 
     public void move() {

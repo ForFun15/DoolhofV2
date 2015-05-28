@@ -4,6 +4,7 @@
  */
 package doolhofgame2;
 
+import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 /**
@@ -13,7 +14,11 @@ import javax.swing.ImageIcon;
 public class Vriend extends SpelItem{
     public Vriend(){
     image = new ImageIcon(getClass().getResource("/resources/imgVriend.png")).getImage();
-    //kjldfjl
+   
     }
     
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g.drawImage(image, getX(), getY(), this);
+    }
 }
