@@ -16,12 +16,12 @@ import javax.swing.JPanel;
  *
  * @author Karen
  */
-public class Level extends JPanel implements ActionListener {
+public class Level extends JPanel {
 
     private Boolean endLevel;
     private Boolean gameOver;
     private Doolhof doolhof;
-    private Speler speler;
+//    private Speler speler;
     private int levelNr = 1;
 
     public Level() {
@@ -30,7 +30,7 @@ public class Level extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setSize(900, 700);
         setFocusable(true);
-        addKeyListener(new Toetsenbord());
+//        addKeyListener(new Toetsenbord());
         start();
 
     }
@@ -45,32 +45,33 @@ public class Level extends JPanel implements ActionListener {
         label.setForeground(Color.BLUE);
         label.setBounds(500, 0, 100, 50);
         doolhof = new Doolhof(levelNr);
-        speler = new Speler();
+//        speler = new Speler();
         doolhof.setBounds(60, 50, 850, 650);
-        add(speler);
+        doolhof.repaint();
+//        add(speler);
         add(doolhof);
     }
 
-    public void paint(Graphics g) {
-        super.paint(g);
-        g.drawImage(speler.getImage(), speler.getPositieX(), speler.getPositieY(), null);
-    }
+//    public void paint(Graphics g) {
+//        super.paint(g);
+//        g.drawImage(speler.getImage(), speler.getPositieX(), speler.getPositieY(), null);
+//    }
+//
+//    public void actionPerformed(ActionEvent e) {
+//        speler.move();
+//        repaint();
+//    }
 
-    public void actionPerformed(ActionEvent e) {
-        speler.move();
-        repaint();
-    }
-
-    private class Toetsenbord extends KeyAdapter {
-
-        public void keyReleased(KeyEvent e) {
-            speler.keyReleased(e);
-        }
-
-        public void keyPressed(KeyEvent e) {
-            speler.keyPressed(e);
-        }
-    }
+//    private class Toetsenbord extends KeyAdapter {
+//
+//        public void keyReleased(KeyEvent e) {
+//            speler.keyReleased(e);
+//        }
+//
+//        public void keyPressed(KeyEvent e) {
+//            speler.keyPressed(e);
+//        }
+//    }
 
     public Boolean getEndLevel() {
         return endLevel;

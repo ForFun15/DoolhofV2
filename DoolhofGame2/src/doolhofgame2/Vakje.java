@@ -4,6 +4,7 @@
  */
 package doolhofgame2;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.JComponent;
@@ -20,6 +21,11 @@ public class Vakje extends JComponent {
     public Vakje() {
         buren = new ArrayList();
     }
+    
+     protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, null);
+     }
 
     @Override
     public int getHeight() {

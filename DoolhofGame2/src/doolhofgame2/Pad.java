@@ -18,20 +18,38 @@ public class Pad extends Vakje {
 
     public Pad() {
         image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
-        
-    }
-    public Pad(Speler speler) {
-        image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
-        this.speler = speler;
-    }
-    public Pad(SpelItem spelitem) {
-        image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
-        this.spelitem = spelitem;
+
     }
 
+    public Pad(Speler speler) {
+        this.speler = speler;
+        image = speler.getImage();
+    }
+
+    public Pad(SpelItem spelitem) {
+        
+        this.spelitem = spelitem;
+        image = spelitem.image;
+    }
+
+    public Speler getSpeler() {
+        return speler;
+    }
+
+    public SpelItem getSpelitem() {
+        return spelitem;
+    }
+    
+    
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, getX(), getY(), this);
-        
+       
+        if (speler != null) {
+            speler.repaint();
+        }
+        if (spelitem != null) {
+            spelitem.repaint();
+        }
+
     }
 }

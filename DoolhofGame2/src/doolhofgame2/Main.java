@@ -29,6 +29,7 @@ public class Main extends JFrame {
     private void btnStartMouseClicked(MouseEvent evt) {
         startPage.setVisible(false);
         level = new Level();
+        //level.setVisible(true);
         add(level);
     }
 
