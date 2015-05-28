@@ -53,10 +53,10 @@ public class Main extends JFrame {
             }
         });
 
-        JLabel naamPage = new JLabel(image1);
+        JLabel imgPage = new JLabel(image1);
         startPage = new JPanel();
         startPage.setBackground(Color.BLACK);
-        startPage.add(naamPage);
+        startPage.add(imgPage);
         startPage.setLocation(0, 0);
         startPage.add(start);
 

@@ -4,6 +4,7 @@
  */
 package doolhofgame2;
 
+import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 /**
@@ -12,9 +13,14 @@ import javax.swing.ImageIcon;
  */
 public class Muur extends Vakje {
 
-    
     public Muur() {
         image = new ImageIcon(getClass().getResource("/resources/muur.png")).getImage();
-       //dfldfljdf 
+
+    }
+
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, image.getHeight(this), image.getWidth(this), this);
+        
     }
 }

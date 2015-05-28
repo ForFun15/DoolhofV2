@@ -4,6 +4,7 @@
  */
 package doolhofgame2;
 
+import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 /**
@@ -14,6 +15,11 @@ public class ValsSpeler extends SpelItem {
     
     public ValsSpeler(){
     image = new ImageIcon(getClass().getResource("/resources/estrella.gif")).getImage();
-    //lkjdlsjdl
+  
+    }
+    
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g.drawImage(image, getX(), getY(), this);
     }
 }
