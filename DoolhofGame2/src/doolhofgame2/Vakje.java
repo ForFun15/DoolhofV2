@@ -5,6 +5,7 @@
 package doolhofgame2;
 
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.JComponent;
 
 /**
@@ -14,10 +15,10 @@ import javax.swing.JComponent;
 public class Vakje extends JComponent {
 
     public Image image;
-    public Vakje[] buren;
+    public ArrayList<Vakje> buren;
 
     public Vakje() {
-        buren = new Vakje[4];
+        buren = new ArrayList();
     }
 
     @Override
