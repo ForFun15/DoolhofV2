@@ -4,6 +4,7 @@
  */
 package doolhofgame2;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JComponent;
 
@@ -19,6 +20,11 @@ public class SpelItem extends JComponent {
     public SpelItem() {
         
     }
+    
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, null);
+     }
 
     @Override
     public int getHeight() {

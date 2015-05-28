@@ -5,8 +5,8 @@
 package doolhofgame2;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.io.*;
 import java.util.*;
 import javax.swing.JComponent;
@@ -23,8 +23,8 @@ public class Doolhof extends JComponent {
 
     public Doolhof(int levelNr) {
 
-        this.setLayout(new FlowLayout());
-        this.setBackground(Color.BLACK);
+        setLayout(null);
+        setBackground(Color.BLACK);
         //
         //        File archivo = new File("doolhof3.txt");
         //        try{
@@ -38,6 +38,7 @@ public class Doolhof extends JComponent {
         //        }
         File file = zoekMatrix(levelNr);
         fillMatrix(file);
+        
 
     }
 
@@ -119,55 +120,15 @@ public class Doolhof extends JComponent {
         }
     }
 
-    public void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Vakje[] vak : matrix) {
-            for (Vakje item : vak) {
-                item.repaint();
+        for (int i = 0; i < X; i++) {
+            for (int j = 0; j < Y; j++) {
+                g.drawImage(matrix[i][j].image,i* 30,j* 30, this);
             }
+            
         }
 
     }
-//    private void tekenDoolhof(Graphics g) {
-//
-//        for (int i = 0; i < X; i++) {
-//            for (int j = 0; j < Y; j++) {
-//                if (matrix[i][j] == 1) {
-//                    Vakje m = new Muur();
-//                    g.drawImage(m.image, i * m.getWidth(), j * m.getHeight(), this);
-//                } else {
-//                    if (matrix[i][j] == 0) {
-//                        Vakje p = new Pad();
-//                        g.drawImage(p.image, i * p.getWidth(), j * p.getHeight(), this);
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
-//    private void plaatsSpelItems(Graphics g) {
-//
-//        for (int i = 0; i < X; i++) {
-//            for (int j = 0; j < Y; j++) {
-//                if (matrix[i][j] == 2) {
-//                    SpelItem vriend = new Vriend();
-//                    g.drawImage(vriend.image, i * vriend.getWidth(), j * vriend.getHeight(), this);
-//                } else {
-//                    if (matrix[i][j] == 3) {
-//                        SpelItem vs = new ValsSpeler();
-//                        g.drawImage(vs.image, i * vs.getWidth(), j * vs.getHeight(), this);
-//                    } else {
-//                        if (matrix[i][j] == 4) {
-//                            SpelItem bazooka = new Bazooka();
-//                            g.drawImage(bazooka.image, i * bazooka.getWidth(), j * bazooka.getHeight(), this);
-//                        } else if (matrix[i][j] == 5) {
-//                            SpelItem helper = new Helper();
-//                            g.drawImage(helper.image, i * helper.getWidth(), j * helper.getHeight(), this);
-//                        }
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
+
 }
