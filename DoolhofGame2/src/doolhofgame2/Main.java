@@ -48,6 +48,7 @@ public class Main extends JFrame {
         start.setBackground(Color.BLACK);
         start.addMouseListener(new MouseAdapter() {
 
+            @Override
             public void mouseClicked(MouseEvent evt) {
                 btnStartMouseClicked(evt);
             }
