@@ -30,7 +30,7 @@ public class Level extends JPanel {
         setBackground(Color.BLACK);
         setSize(900, 700);
         setFocusable(true);
-//      addKeyListener(new Toetsenbord());
+//        addKeyListener(new Toetsenbord());
         start();
 
     }
