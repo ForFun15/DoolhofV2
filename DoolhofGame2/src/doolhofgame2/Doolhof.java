@@ -21,6 +21,7 @@ public class Doolhof extends JComponent {
     private final int Y = 20;
     private Vakje[][] matrix;
 
+
     public Doolhof(int levelNr) {
 
         setLayout(null);
@@ -38,7 +39,7 @@ public class Doolhof extends JComponent {
         //        }
         File file = zoekMatrix(levelNr);
         fillMatrix(file);
-        
+
 
     }
 
@@ -83,25 +84,26 @@ public class Doolhof extends JComponent {
                 for (int j = 0; j < Y; ++j) {
                     int num = Integer.parseInt(st.nextToken());
                     if (num == 1) {
-                        Vakje muur = new Muur();
+                        Muur muur = new Muur();
                         matrix[i][j] = muur;
                     } else if (num == 0) {
-                        Vakje pad = new Pad();
+                        Pad pad = new Pad();
                         matrix[i][j] = pad;
                     } else if (num == 2) {
-                        Vakje pSpeler = new Pad(new Speler());
-                        matrix[i][j] = pSpeler;
+                        Speler speler = new Speler();
+                        Pad pSpeler = new Pad(speler);                        
+                        matrix[i][j] = pSpeler;                        
                     } else if (num == 3) {
-                        Vakje pVriend = new Pad(new Vriend());
+                        Pad pVriend = new Pad(new Vriend());
                         matrix[i][j] = pVriend;
                     } else if (num == 4) {
-                        Vakje pBazooka = new Pad(new Bazooka());
+                        Pad pBazooka = new Pad(new Bazooka());
                         matrix[i][j] = pBazooka;
                     } else if (num == 5) {
-                        Vakje pVspeler = new Pad(new ValsSpeler());
+                        Pad pVspeler = new Pad(new ValsSpeler());
                         matrix[i][j] = pVspeler;
                     } else if (num == 6) {
-                        Vakje pHelper = new Pad(new Helper());
+                        Pad pHelper = new Pad(new Helper());
                         matrix[i][j] = pHelper;
                     }
 
@@ -124,11 +126,10 @@ public class Doolhof extends JComponent {
         super.paintComponent(g);
         for (int i = 0; i < X; i++) {
             for (int j = 0; j < Y; j++) {
-                g.drawImage(matrix[i][j].image,i* 30,j* 30, this);
+                g.drawImage(matrix[i][j].image, i * 30, j * 30, this);
+               
             }
-            
         }
 
     }
-
 }

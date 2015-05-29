@@ -5,10 +5,8 @@
 package doolhofgame2;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -23,6 +21,10 @@ public class Level extends JPanel {
     private Doolhof doolhof;
 //    private Speler speler;
     private int levelNr = 1;
+    
+    private JButton opnieuw;
+    private JPanel paneelLevel;
+    private JLabel label;
 
     public Level() {
 
@@ -37,13 +39,28 @@ public class Level extends JPanel {
 
     private void start() {
 
-        JPanel paneelLevel = new Teller();
-        paneelLevel.setBounds(0, 0, 450, 50);
+        paneelLevel = new Teller();
+        paneelLevel.setBounds(450, 0, 200, 50);
         add(paneelLevel);
-        JLabel label = new JLabel("Level" + levelNr);
-        label.setFont(new Font("SansSerif", Font.BOLD, 14));
-        label.setForeground(Color.BLUE);
-        label.setBounds(500, 0, 100, 50);
+        
+        label = new JLabel("Level " + levelNr);
+        label.setFont(new Font("SansSerif", Font.BOLD, 24));
+        label.setBounds(100, 0, 100, 50);
+        label.setForeground(Color.GREEN);
+        add(label);
+        
+        opnieuw = new JButton("Restart");
+        opnieuw.setForeground(Color.GREEN);
+        opnieuw.setBackground(Color.BLACK);
+        opnieuw.addMouseListener(new MouseAdapter() {
+            
+            public void mouseClicked(MouseEvent evt) {
+                btnStartMouseClicked(evt);
+            }
+        });
+        opnieuw.setBounds(700,10, 80, 30);
+        add(opnieuw);
+        
         doolhof = new Doolhof(levelNr);
 //        speler = new Speler();
         doolhof.setBounds(60, 50, 850, 650);
@@ -52,6 +69,10 @@ public class Level extends JPanel {
         add(doolhof);
     }
 
+    private void btnStartMouseClicked(MouseEvent evt) {
+//       this.setVisible(true);
+    }
+    
 //    public void paint(Graphics g) {
 //        super.paint(g);
 //        g.drawImage(speler.getImage(), speler.getPositieX(), speler.getPositieY(), null);
