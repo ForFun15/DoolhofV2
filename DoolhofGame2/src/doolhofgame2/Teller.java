@@ -25,21 +25,21 @@ public class Teller extends JPanel {
         teller = 60;// tel seconden
         timer = new javax.swing.Timer(1000,new TimerHandler());
         timer.start();
-        
-        startknop= new JButton("Start");
-        stopknop= new JButton("Stop");
-        KnopHandler kh = new KnopHandler();
-        startknop.addActionListener(kh);
-        stopknop.addActionListener(kh);
+//        
+//        startknop= new JButton("Start");
+//        stopknop= new JButton("Stop");
+//        KnopHandler kh = new KnopHandler();
+//        startknop.addActionListener(kh);
+//        stopknop.addActionListener(kh);
         setBackground(Color.BLACK);
-        
-        add(startknop);
-        add(stopknop);
+//        
+//        add(startknop);
+//        add(stopknop);
     }
     
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.setColor(Color.BLUE);
+        g.setColor(Color.GREEN);
         g.setFont(new Font("SansSerif", Font.BOLD, 14));
         g.drawString("Timer: "+teller, 100, 30);
     }
