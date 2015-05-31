@@ -6,99 +6,95 @@ package doolhofgame2;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
  * @author Karen
  */
-public class Speler extends JFrame implements ActionListener{
+public class Speler extends JLabel{
 
     public int positieX, positieY, dx, dy;
     private Image image, imgR, imgL, imgU, imgD;
-    private Key key;
+//    private Key key;
 
     public Speler() {
-        addKeyListener(key);
+//        addKeyListener(key);
         this.positieX = 0;
-        this.positieY = 0;
+        this.positieY = 30;
         image = new ImageIcon(getClass().getResource("/resources/imgR.png")).getImage();
 
     }
-    
-    
-    protected void paintComponent(Graphics g){
-        //super.paintComponent(g);
-        g.drawImage(image, getX(), getY(), this);
+//
+    protected void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, this);
     }
 
     public void move() {
         positieX += dx;
         positieY += dy;
-        setLocation(positieX, positieY);
+        //setLocation(positieX, positieY);
     }
-    
 
     public Image getImage() {
         return image;
     }
 
-//    public int getPositieX() {
-//        return positieX;
-//    }
-//
-//    public int getPositieY() {
-//        return positieY;
-//    }
-//    
-//    public int setPositieX()
-//    {
-//        return positieX;
-//    }
-//    public int setPositieY()
-//    {
-//        return positieY;
-//    }
-    
-    
+    public int getPositieX() {
+        return positieX;
+    }
 
-//    public void keyPressed(KeyEvent e) {
-//        int key = e.getKeyCode();
-//
-//        if (key == KeyEvent.VK_LEFT) {
-//            dx = -1;
-//        }
-//        if (key == KeyEvent.VK_RIGHT) {
-//            dx = 1;
-//        }
-//        if (key == KeyEvent.VK_UP) {
-//            dy = -1;
-//        }
-//        if (key == KeyEvent.VK_DOWN) {
-//            dy = 1;
-//        }
-//    }
-//
-//    public void keyReleased(KeyEvent e) {
-//        int key = e.getKeyCode();
-//
-//        if (key == KeyEvent.VK_LEFT) {
-//            dx = 0;
-//        }
-//        if (key == KeyEvent.VK_RIGHT) {
-//            dx = 0;
-//        }
-//        if (key == KeyEvent.VK_UP) {
-//            dy = 0;
-//        }
-//        if (key == KeyEvent.VK_DOWN) {
-//            dy = 0;
-//        }
-//    }
+    public int getPositieY() {
+        return positieY;
+    }
+    
+    public int setPositieX()
+    {
+        return positieX;
+    }
+    
+    public int setPositieY()
+    {
+        return positieY;
+    }
+    
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
 
+        if (key == KeyEvent.VK_LEFT) {
+            dx = -10;
+        }
+        if (key == KeyEvent.VK_RIGHT) {
+            dx = 10;
+        }
+        if (key == KeyEvent.VK_UP) {
+            dy = -10;
+        }
+        if (key == KeyEvent.VK_DOWN) {
+            dy = 10;
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+
+        if (key == KeyEvent.VK_LEFT) {
+            dx = 0;
+        }
+        if (key == KeyEvent.VK_RIGHT) {
+            dx = 0;
+        }
+        if (key == KeyEvent.VK_UP) {
+            dy = 0;
+        }
+        if (key == KeyEvent.VK_DOWN) {
+            dy = 0;
+        }
+    }
     private void loadImages() {
 
 
@@ -108,8 +104,5 @@ public class Speler extends JFrame implements ActionListener{
         imgD = new ImageIcon(getClass().getResource("resources/imgD.png")).getImage();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+   
 }

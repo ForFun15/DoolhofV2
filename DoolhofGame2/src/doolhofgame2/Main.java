@@ -15,7 +15,7 @@ import javax.swing.*;
  */
 public class Main extends JFrame {
 
-    private JPanel level;
+
     private JPanel startPage;
     private JButton start;
     ImageIcon image1;
@@ -24,22 +24,27 @@ public class Main extends JFrame {
     public Main() {
         image1 = new ImageIcon(getClass().getResource("/resources/Slide1.png"));
         image2 = new ImageIcon(getClass().getResource("/resources/Start.png"));
-    }
-
-    private void btnStartMouseClicked(MouseEvent evt) {
-        startPage.setVisible(false);
-        level = new Level();
-        //level.setVisible(true);
-        add(level);
-    }
-
-    public void init() {
-
         setTitle("Dolhoof Game");
         setSize(900, 700);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.BLACK);
+        setLocationRelativeTo(null);
+    }
+
+    private void btnStartMouseClicked(MouseEvent evt) {
+//        startPage.setVisible(false);
+//        Level level = new Level();
+//        level.addKeyListener(new Key());
+//        //level.requestFocus();
+////        level.setFocusable(true);
+////        level.requestFocusInWindow();
+////        level.setVisible(true);
+//        add(level);
+
+    }
+
+    public void init() {
 
         start = new JButton();
         start.setIcon(image2);
@@ -60,8 +65,14 @@ public class Main extends JFrame {
         startPage.add(imgPage);
         startPage.setLocation(0, 0);
         startPage.add(start);
-
         add(startPage);
+
+        Level level = new Level();
+        level.addKeyListener(level);
+        level.setFocusable(true);
+//        level.requestFocus();
+       
+        add(level);
         setVisible(true);
 
     }

@@ -4,28 +4,24 @@
  */
 package doolhofgame2;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.io.*;
 import java.util.*;
-import javax.swing.JComponent;
 
 /**
  *
  * @author Karen
  */
-public class Doolhof extends JComponent {
+public class Doolhof {
 
-    private final int X = 26;
-    private final int Y = 20;
+    private int X;
+    private int Y;
     private Vakje[][] matrix;
+    private Speler speler = null;
 
+    public Doolhof(int levelNr, int x, int y) {
 
-    public Doolhof(int levelNr) {
-
-        setLayout(null);
-        setBackground(Color.BLACK);
+        this.X = x;
+        this.Y = y;
         //
         //        File archivo = new File("doolhof3.txt");
         //        try{
@@ -39,8 +35,18 @@ public class Doolhof extends JComponent {
         //        }
         File file = zoekMatrix(levelNr);
         fillMatrix(file);
+        addBuren();
 
 
+
+    }
+
+    public Vakje[][] getMatrix() {
+        return matrix;
+    }
+
+    public Speler getSpeler() {
+        return speler;
     }
 
     private File zoekMatrix(int levelNr) {
@@ -90,9 +96,10 @@ public class Doolhof extends JComponent {
                         Pad pad = new Pad();
                         matrix[i][j] = pad;
                     } else if (num == 2) {
-                        Speler speler = new Speler();
-                        Pad pSpeler = new Pad(speler);                        
-                        matrix[i][j] = pSpeler;                        
+                        speler = new Speler();
+                        Pad pSpeler = new Pad(speler);
+                        matrix[i][j] = pSpeler;
+                        System.out.println(i + " " + j);
                     } else if (num == 3) {
                         Pad pVriend = new Pad(new Vriend());
                         matrix[i][j] = pVriend;
@@ -122,14 +129,48 @@ public class Doolhof extends JComponent {
         }
     }
 
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    private void addBuren() {
         for (int i = 0; i < X; i++) {
             for (int j = 0; j < Y; j++) {
-                g.drawImage(matrix[i][j].image, i * 30, j * 30, this);
-               
+                // bepaal buren
+                if (i == 0) {
+                    matrix[i][j].buren[3] = null; //west buur
+                    matrix[i][j].buren[1] = matrix[i + 1][j]; // east buur
+                } else {
+                    if (i < X - 1) {
+                        matrix[i][j].buren[3] = matrix[i - 1][j]; //west buur
+                        matrix[i][j].buren[1] = matrix[i + 1][j]; // east buur
+                    } else if (i == X - 1) {
+                        matrix[i][j].buren[3] = matrix[i - 1][j]; //west buur
+                        matrix[i][j].buren[1] = null; // east buur
+                    }
+                }
+                if (j == 0) {
+                    matrix[i][j].buren[0] = null; //north buur
+                    matrix[i][j].buren[2] = matrix[i][j + 1]; // south buur
+                } else {
+                    if (j < Y - 1) {
+                        matrix[i][j].buren[0] = matrix[i][j - 1]; //north buur
+                        matrix[i][j].buren[2] = matrix[i][j + 1]; // south buur
+                    } else if (j == Y - 1) {
+                        matrix[i][j].buren[0] = matrix[i][j - 1]; //north buur
+                        matrix[i][j].buren[2] = null; // south buur
+                    }
+                }
             }
         }
-
     }
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        for (int i = 0; i < X; i++) {
+//            for (int j = 0; j < Y; j++) {
+////                matrix[i][j].repaint();
+//                g.drawImage(matrix[i][j].image, i * 30, j * 30, this);
+//
+//
+//            }
+//        }
+//
+//    }
+//    
 }

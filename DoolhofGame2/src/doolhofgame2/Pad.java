@@ -24,12 +24,13 @@ public class Pad extends Vakje {
     public Pad(Speler speler) {
         this.speler = speler;
         image = speler.getImage();
+
     }
 
     public Pad(SpelItem spelitem) {
-        
         this.spelitem = spelitem;
         image = spelitem.image;
+
     }
 
     public Speler getSpeler() {
@@ -39,17 +40,17 @@ public class Pad extends Vakje {
     public SpelItem getSpelitem() {
         return spelitem;
     }
-    
-    
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-       
+        g.drawImage(image, 0, 0, this);
+//
         if (speler != null) {
             speler.repaint();
-        }
-        if (spelitem != null) {
+        } else if (spelitem != null) {
             spelitem.repaint();
         }
+
 
     }
 }

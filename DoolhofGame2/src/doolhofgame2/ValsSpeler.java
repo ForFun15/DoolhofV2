@@ -20,6 +20,7 @@ public class ValsSpeler extends SpelItem {
     
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.drawImage(image, getX(), getY(), this);
+        g.drawImage(image, 0, 0, this);
+        
     }
 }

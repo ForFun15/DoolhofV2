@@ -14,87 +14,91 @@ import javax.swing.JPanel;
  *
  * @author Karen
  */
-public class Level extends JPanel {
+public class Level extends JPanel implements KeyListener {
 
     private Boolean endLevel;
     private Boolean gameOver;
     private Doolhof doolhof;
-//    private Speler speler;
     private int levelNr = 1;
-    
-    private JButton opnieuw;
-    private JPanel paneelLevel;
+    private Teller timer;
     private JLabel label;
+    private JButton opnieuw;
+    private final int X = 26;
+    private final int Y = 20;
+    private Vakje[][] matrix;
+    private Speler speler;
 
     public Level() {
 
         setLayout(null);
         setBackground(Color.BLACK);
         setSize(900, 700);
-        setFocusable(true);
-//        addKeyListener(new Toetsenbord());
+
         start();
+
 
     }
 
     private void start() {
 
-        paneelLevel = new Teller();
-        paneelLevel.setBounds(450, 0, 200, 50);
-        add(paneelLevel);
-        
+        doolhof = new Doolhof(levelNr, X, Y);
+        matrix = doolhof.getMatrix();
+        speler = doolhof.getSpeler();
+
+
+        timer = new Teller(10);
+        timer.setBounds(600, 10, 100, 30);
+        add(timer);
+
+
         label = new JLabel("Level " + levelNr);
         label.setFont(new Font("SansSerif", Font.BOLD, 24));
         label.setBounds(100, 0, 100, 50);
         label.setForeground(Color.GREEN);
         add(label);
-        
+
         opnieuw = new JButton("Restart");
         opnieuw.setForeground(Color.GREEN);
         opnieuw.setBackground(Color.BLACK);
         opnieuw.addMouseListener(new MouseAdapter() {
-            
+
             public void mouseClicked(MouseEvent evt) {
                 btnStartMouseClicked(evt);
             }
         });
-        opnieuw.setBounds(700,10, 80, 30);
+        opnieuw.setBounds(700, 10, 80, 30);
         add(opnieuw);
-        
-        doolhof = new Doolhof(levelNr);
-//        speler = new Speler();
-        doolhof.setBounds(60, 50, 850, 650);
-        doolhof.repaint();
-//        add(speler);
-        add(doolhof);
+        addVakjes();
+//        Vakje component = (Vakje) getComponent(0);
+//        component.printBuren();
     }
 
     private void btnStartMouseClicked(MouseEvent evt) {
-//       this.setVisible(true);
+        timer.stopTimer();
+        this.repaint();
+        start();
     }
-    
-//    public void paint(Graphics g) {
-//        super.paint(g);
-//        g.drawImage(speler.getImage(), speler.getPositieX(), speler.getPositieY(), null);
-//    }
-//
+
+
+    private void addVakjes() {
+
+        for (int i = 0; i < X; i++) {
+            for (int j = 0; j < Y; j++) {
+                matrix[i][j].setBounds(60 + i * 30, 50 + j * 30, 30, 30);
+//                if(matrix[i][j] instanceof Pad){
+//                    matrix[i][j]
+//                }
+                add(matrix[i][j]);
+            }
+        }
+    }
+
 //    public void actionPerformed(ActionEvent e) {
 //        speler.move();
 //        repaint();
 //    }
 
-//    private class Toetsenbord extends KeyAdapter {
-//
-//        public void keyReleased(KeyEvent e) {
-//            speler.keyReleased(e);
-//        }
-//
-//        public void keyPressed(KeyEvent e) {
-//            speler.keyPressed(e);
-//        }
-//    }
-
-    public Boolean getEndLevel() {
+   public Boolean getEndLevel() {
         return endLevel;
     }
 
@@ -117,4 +121,23 @@ public class Level extends JPanel {
     public void setLevelNr(int levelNr) {
         this.levelNr = levelNr;
     }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        //speler.keyReleased(e);
+        System.out.println("keyTyped: " + e);
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // speler.keyPressed(e);
+        System.out.println("keyTyped: " + e);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        System.out.println("keyTyped: " + e);
+    }
+
+
 }
