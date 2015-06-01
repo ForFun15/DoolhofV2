@@ -18,9 +18,9 @@ public class Muur extends Vakje {
 
     }
 
-    protected void paintComponent(Graphics g) {
+  protected void paintComponent(Graphics g) {
+        
+        g.drawImage(image, posX, posY, this);
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, this);
-
     }
 }

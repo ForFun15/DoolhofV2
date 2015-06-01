@@ -8,36 +8,69 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import javax.swing.JComponent;
 
 /**
  *
  * @author Karen
  */
-public class Speler extends JLabel{
+public class Speler extends JComponent {
 
-    public int positieX, positieY, dx, dy;
+    private int positieX, positieY, dx, dy;
     private Image image, imgR, imgL, imgU, imgD;
+    private Pad pad;
 //    private Key key;
 
     public Speler() {
 //        addKeyListener(key);
-        this.positieX = 0;
-        this.positieY = 30;
         image = new ImageIcon(getClass().getResource("/resources/imgR.png")).getImage();
 
     }
-//
-    protected void paintComponent(Graphics g) {
 
-        super.paintComponent(g);
-        g.drawImage(image, 0, 0, this);
+    public Speler(Pad pad) {
+        setPad(pad);
     }
 
-    public void move() {
-        positieX += dx;
-        positieY += dy;
+    public void setPad(Pad pad) {
+        this.pad = pad;
+        pad.setSpeler(this);
+    }
+
+//
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, this);
+
+    }
+
+    public void move(int d) {
+        //positieX += dx;
+        //positieY += dy;
+        if (canMove(d)) {
+            Pad buur = (Pad) getBuur(d);
+            swapPad(pad, buur);
+        }
         //setLocation(positieX, positieY);
+    }
+
+    public boolean canMove(int d) {
+        boolean result = false;
+        Vakje buur = getBuur(d);
+        if (buur.isWalkable) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    private Vakje getBuur(int d) {
+        Vakje buur = pad.getNorth();
+        if (d == 0) {
+            buur = pad.getNorth();
+        } else if (d == 1) {
+            buur = pad.getWest();
+        }
+        return buur;
     }
 
     public Image getImage() {
@@ -48,20 +81,18 @@ public class Speler extends JLabel{
         return positieX;
     }
 
+    public void setPositieX(int positieX) {
+        this.positieX = positieX;
+    }
+
     public int getPositieY() {
         return positieY;
     }
-    
-    public int setPositieX()
-    {
-        return positieX;
+
+    public void setPositieY(int positieY) {
+        this.positieY = positieY;
     }
-    
-    public int setPositieY()
-    {
-        return positieY;
-    }
-    
+
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
@@ -95,6 +126,7 @@ public class Speler extends JLabel{
             dy = 0;
         }
     }
+
     private void loadImages() {
 
 
@@ -104,5 +136,10 @@ public class Speler extends JLabel{
         imgD = new ImageIcon(getClass().getResource("resources/imgD.png")).getImage();
     }
 
-   
+    private void swapPad(Pad from, Pad to) {
+        setPad(to);
+        from.setSpeler(null);
+        from.repaint();
+        to.repaint();
+    }
 }

@@ -12,21 +12,15 @@ import javax.swing.ImageIcon;
  * @author Karen
  */
 public class Pad extends Vakje {
-
-    public Speler speler;
-    public SpelItem spelitem;
-
+    
+    private SpelItem spelitem;
+    private Speler speler;
+    
     public Pad() {
         image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
-
+        isWalkable = true;
     }
-
-    public Pad(Speler speler) {
-        this.speler = speler;
-        image = speler.getImage();
-
-    }
-
+        
     public Pad(SpelItem spelitem) {
         this.spelitem = spelitem;
         image = spelitem.image;
@@ -37,20 +31,40 @@ public class Pad extends Vakje {
         return speler;
     }
 
+    public void setSpeler(Speler speler) {
+        this.speler = speler;
+        if (speler != null) {
+            image = speler.getImage();
+        } else {
+            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
+        }
+    }
+    
+    
+    
     public SpelItem getSpelitem() {
         return spelitem;
     }
-
+    
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        if (speler != null) {
+//            speler.repaint();
+//        } 
+//            if (spelitem != null) {
+//            spelitem.repaint();
+//        }
+//        
+//        
+//    }
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, this);
-//
+        
+        g.drawImage(image, posX, posY, this);
         if (speler != null) {
             speler.repaint();
-        } else if (spelitem != null) {
-            spelitem.repaint();
         }
-
-
     }
+
+   
 }

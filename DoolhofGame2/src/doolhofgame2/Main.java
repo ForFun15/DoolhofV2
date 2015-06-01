@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -16,6 +16,7 @@ import javax.swing.*;
 public class Main extends JFrame {
 
 
+    private Level level;
     private JPanel startPage;
     private JButton start;
     ImageIcon image1;
@@ -26,7 +27,7 @@ public class Main extends JFrame {
         image2 = new ImageIcon(getClass().getResource("/resources/Start.png"));
         setTitle("Dolhoof Game");
         setSize(900, 700);
-        setResizable(false);
+        setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.BLACK);
         setLocationRelativeTo(null);
@@ -59,18 +60,18 @@ public class Main extends JFrame {
             }
         });
 
-        JLabel imgPage = new JLabel(image1);
-        startPage = new JPanel();
-        startPage.setBackground(Color.BLACK);
-        startPage.add(imgPage);
-        startPage.setLocation(0, 0);
-        startPage.add(start);
-        add(startPage);
+//        JLabel imgPage = new JLabel(image1);
+//        startPage = new JPanel();
+//        startPage.setBackground(Color.BLACK);
+//        startPage.add(imgPage);
+//        startPage.setLocation(0, 0);
+//        startPage.add(start);
+//        add(startPage);
 
-        Level level = new Level();
-        level.addKeyListener(level);
+        level = new Level();
+        
         level.setFocusable(true);
-//        level.requestFocus();
+
        
         add(level);
         setVisible(true);

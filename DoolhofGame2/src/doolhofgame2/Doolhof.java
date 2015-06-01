@@ -4,14 +4,20 @@
  */
 package doolhofgame2;
 
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.*;
 import java.util.*;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Karen
  */
-public class Doolhof {
+public class Doolhof extends JPanel {
 
     private int X;
     private int Y;
@@ -22,6 +28,10 @@ public class Doolhof {
 
         this.X = x;
         this.Y = y;
+        setSize(780, 600);
+        setLayout(null);
+       
+
         //
         //        File archivo = new File("doolhof3.txt");
         //        try{
@@ -31,22 +41,49 @@ public class Doolhof {
         //            }
         //            escribo.close();
         //        }catch(IOException ex){
-        //            System.out.println("error "+ex);
+        //      
+        //System.out.println(
+        //        "error " + ex);
         //        }
         File file = zoekMatrix(levelNr);
+
         fillMatrix(file);
+
+        setPositionVakjes();
+
         addBuren();
 
+        addVakjes();
+        
+         addKeyListener(new KeyListener() {
 
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
 
-    }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int keyCode = e.getKeyCode();
+                if (keyCode == KeyEvent.VK_LEFT) {
+                    //grens bepalen
+                }
+                if (keyCode == KeyEvent.VK_RIGHT) {
+                    speler.move(1);
+                }
+                if (keyCode == KeyEvent.VK_UP) {
+                    speler.move(0);
+                }
+                if (keyCode == KeyEvent.VK_DOWN) {
+                }
+            }
 
-    public Vakje[][] getMatrix() {
-        return matrix;
-    }
-
-    public Speler getSpeler() {
-        return speler;
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+        //requestFocus(true);
+        setFocusable(true);
+       
     }
 
     private File zoekMatrix(int levelNr) {
@@ -97,9 +134,9 @@ public class Doolhof {
                         matrix[i][j] = pad;
                     } else if (num == 2) {
                         speler = new Speler();
-                        Pad pSpeler = new Pad(speler);
+                        Pad pSpeler = new Pad();
+                        speler.setPad(pSpeler);
                         matrix[i][j] = pSpeler;
-                        System.out.println(i + " " + j);
                     } else if (num == 3) {
                         Pad pVriend = new Pad(new Vriend());
                         matrix[i][j] = pVriend;
@@ -127,6 +164,19 @@ public class Doolhof {
             System.out.println("matrix vullen is fout gegaan" + ioe);
 
         }
+    }
+
+    private void addVakjes() {
+
+        for (int i = 0; i < X; i++) {
+            for (int j = 0; j < Y; j++) {
+                matrix[i][j].setBounds(i * 30, j * 30, 30, 30);
+                add(matrix[i][j]);
+//                matrix[i][j].repaint();
+            }
+        }
+
+//        repaint();
     }
 
     private void addBuren() {
@@ -160,17 +210,16 @@ public class Doolhof {
             }
         }
     }
-//    protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        for (int i = 0; i < X; i++) {
-//            for (int j = 0; j < Y; j++) {
-////                matrix[i][j].repaint();
-//                g.drawImage(matrix[i][j].image, i * 30, j * 30, this);
-//
-//
-//            }
-//        }
-//
-//    }
-//    
+
+    private void setPositionVakjes() {
+        for (int i = 0; i < X; i++) {
+            for (int j = 0; j < Y; j++) {
+                matrix[i][j].setPosX(i * 30);
+                matrix[i][j].setPosY(j * 30);
+//                System.out.println("x: "+matrix[i][j].getPosX());
+//                System.out.println("y: "+matrix[i][j].getPosY());
+            }
+
+        }
+    }
 }
