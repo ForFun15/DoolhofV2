@@ -15,10 +15,18 @@ public class Bazooka extends SpelItem {
 
     public Bazooka() {
         image = new ImageIcon(getClass().getResource("/resources/imgBaz.png")).getImage();
-    
+        isPickable = true;
+    }
+
+    @Override
+    public void voerActie() {
+        super.voerActie();
+        
     }
     
-    protected void paintComponent(Graphics g){
+    
+
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
     }

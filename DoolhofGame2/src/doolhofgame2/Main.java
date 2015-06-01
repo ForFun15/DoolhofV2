@@ -69,10 +69,7 @@ public class Main extends JFrame {
 //        add(startPage);
 
         level = new Level();
-        
-        level.setFocusable(true);
-
-       
+              
         add(level);
         setVisible(true);
 

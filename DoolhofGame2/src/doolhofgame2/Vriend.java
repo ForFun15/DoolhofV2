@@ -17,6 +17,12 @@ public class Vriend extends SpelItem{
    
     }
     
+     @Override
+    public void voerActie() {
+        super.voerActie();
+        
+    }
+    
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);

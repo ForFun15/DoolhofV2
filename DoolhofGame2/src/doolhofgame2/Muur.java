@@ -15,11 +15,22 @@ public class Muur extends Vakje {
 
     public Muur() {
         image = new ImageIcon(getClass().getResource("/resources/muur.png")).getImage();
-
+        switchImage();
     }
 
-  protected void paintComponent(Graphics g) {
-        
+    public final void switchImage() {
+
+        if (levelVk == 1) {
+            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
+        } else if (levelVk == 2) {
+            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
+        } else if (levelVk == 3) {
+            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
+        }
+    }
+
+    protected void paintComponent(Graphics g) {
+
         g.drawImage(image, posX, posY, this);
         super.paintComponent(g);
     }

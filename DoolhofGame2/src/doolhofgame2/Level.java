@@ -41,14 +41,9 @@ public class Level extends JPanel {
     
     private void start() {
 
-
-
-//        speler = doolhof.getSpeler();
-
-
-//        timer = new Teller(10);
-//        timer.setBounds(600, 10, 100, 30);
-//        add(timer);
+        timer = new Teller(10);
+        timer.setBounds(600, 10, 100, 30);
+        add(timer);
 
         
         label = new JLabel("Level " + levelNr);
@@ -70,13 +65,13 @@ public class Level extends JPanel {
         add(opnieuw);
         
         doolhof = new Doolhof(levelNr, X, Y);
-        //matrix = doolhof.getMatrix();
+        doolhof.requestFocus();
+        doolhof.setFocusable(true);
+        doolhof.requestFocusInWindow();
         doolhof.setLocation(60, 50);
-        //doolhof.repaint();
+      
         add(doolhof);
-        //addVakjes();
-//        Vakje component = (Vakje) getComponent(0);
-//        component.printBuren();
+
     }
     
     private void btnStartMouseClicked(MouseEvent evt) {
@@ -85,38 +80,7 @@ public class Level extends JPanel {
         start();
     }
     
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-//        for (int i = 0; i < X; i++) {
-//            for (int j = 0; j < Y; j++) {
-//                g.drawImage(matrix[i][j].image, 60 + i * matrix[i][j].image.getHeight(this), 50 + j * matrix[i][j].image.getWidth(this), null);
-//
-//                add(matrix[i][j]);
-//            }
-////        }
-//        for (Vakje[] rij : matrix) {
-//            for (Vakje vk : rij) {
-//               vk.repaint();
-//            }
-//        }
-        doolhof.repaint();
-    }
-
-//    private void addVakjes() {
-//
-//        for (int i = 0; i < X; i++) {
-//            for (int j = 0; j < Y; j++) {
-//                matrix[i][j].setBounds(60 + i * 30, 50 + j * 30, 30, 30);
-//                
-//                add(matrix[i][j]);
-//            }
-//        }
-//    }
-//    public void actionPerformed(ActionEvent e) {
-//        speler.move();
-//        repaint();
-//    }
-    public Boolean getEndLevel() {
+     public Boolean getEndLevel() {
         return endLevel;
     }
     

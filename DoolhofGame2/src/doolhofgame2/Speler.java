@@ -19,6 +19,7 @@ public class Speler extends JComponent {
     private int positieX, positieY, dx, dy;
     private Image image, imgR, imgL, imgU, imgD;
     private Pad pad;
+    private Bazooka bazooka;
 //    private Key key;
 
     public Speler() {
@@ -27,10 +28,9 @@ public class Speler extends JComponent {
 
     }
 
-    public Speler(Pad pad) {
-        setPad(pad);
-    }
-
+//    public Speler(Pad pad) {
+//        setPad(pad);
+//    }
     public void setPad(Pad pad) {
         this.pad = pad;
         pad.setSpeler(this);
@@ -44,13 +44,19 @@ public class Speler extends JComponent {
     }
 
     public void move(int d) {
-        //positieX += dx;
-        //positieY += dy;
+
         if (canMove(d)) {
             Pad buur = (Pad) getBuur(d);
+            if (buur.getSpelitem() != null) {
+                if (buur.getSpelitem().isPickable) {
+                    this.bazooka = (Bazooka) buur.getSpelitem();
+                } else {
+                    buur.getSpelitem().voerActie();
+                }
+            }
             swapPad(pad, buur);
         }
-        //setLocation(positieX, positieY);
+
     }
 
     public boolean canMove(int d) {
@@ -64,10 +70,14 @@ public class Speler extends JComponent {
     }
 
     private Vakje getBuur(int d) {
-        Vakje buur = pad.getNorth();
+        Vakje buur = pad.getEast();
         if (d == 0) {
             buur = pad.getNorth();
         } else if (d == 1) {
+            buur = pad.getEast();
+        } else if (d == 2) {
+            buur = pad.getSouth();
+        } else if (d == 3) {
             buur = pad.getWest();
         }
         return buur;
@@ -91,40 +101,6 @@ public class Speler extends JComponent {
 
     public void setPositieY(int positieY) {
         this.positieY = positieY;
-    }
-
-    public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT) {
-            dx = -10;
-        }
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 10;
-        }
-        if (key == KeyEvent.VK_UP) {
-            dy = -10;
-        }
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 10;
-        }
-    }
-
-    public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT) {
-            dx = 0;
-        }
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 0;
-        }
-        if (key == KeyEvent.VK_UP) {
-            dy = 0;
-        }
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 0;
-        }
     }
 
     private void loadImages() {

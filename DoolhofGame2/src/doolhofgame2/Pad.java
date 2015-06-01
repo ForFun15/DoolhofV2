@@ -12,19 +12,48 @@ import javax.swing.ImageIcon;
  * @author Karen
  */
 public class Pad extends Vakje {
-    
+
     private SpelItem spelitem;
     private Speler speler;
-    
+
     public Pad() {
         image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
         isWalkable = true;
+        switchImage();       
+
     }
-        
+
+   public final void switchImage(){
+       
+        if (levelVk == 1) {
+            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
+        } else if (levelVk == 2) {
+            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
+        } else if (levelVk == 3) {
+            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
+        }
+    }
+
     public Pad(SpelItem spelitem) {
         this.spelitem = spelitem;
-        image = spelitem.image;
+        if (spelitem != null) {
+            image = spelitem.image;
+        } else {
+            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
+        }
+    }
 
+    public void setSpelitem(SpelItem spelitem) {
+        this.spelitem = spelitem;
+        if (spelitem != null) {
+            image = spelitem.image;
+        } else {
+            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
+        }
+    }
+
+    public SpelItem getSpelitem() {
+        return spelitem;
     }
 
     public Speler getSpeler() {
@@ -39,13 +68,7 @@ public class Pad extends Vakje {
             image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
         }
     }
-    
-    
-    
-    public SpelItem getSpelitem() {
-        return spelitem;
-    }
-    
+
 //    protected void paintComponent(Graphics g) {
 //        super.paintComponent(g);
 //        if (speler != null) {
@@ -59,12 +82,10 @@ public class Pad extends Vakje {
 //    }
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+
         g.drawImage(image, posX, posY, this);
         if (speler != null) {
             speler.repaint();
         }
     }
-
-   
 }

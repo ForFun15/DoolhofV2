@@ -19,26 +19,26 @@ public class Vakje extends JComponent {
     //north 0, east 1, south 2, west 3
     protected int posX, posY;
     protected boolean isWalkable = false;
+    protected int levelVk;
 
     public Vakje() {
     }
-
-    protected void paintComponent(Graphics g) {
-         super.paintComponent(g);
-        g.drawImage(image, 0, 0, this);
-       
+    public Vakje(int levelVk){
+        this.levelVk = levelVk;
+  
+        
     }
 
-//    public void printBuren() {
-//        for (int i = 0; i < buren.length; i++) {
-//            if (buren[i] != null) {
-//                System.out.println(buren[i].toString());
-//            }
-//        }
-//    }
+    public void switchImage(){
+        
+    }
+    
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, this);
 
-    
-    
+    }
+
     public int getPosX() {
         return posX;
     }
@@ -54,11 +54,20 @@ public class Vakje extends JComponent {
     public void setPosY(int posY) {
         this.posY = posY;
     }
-    
+
     public Vakje getNorth() {
         return buren[0];
     }
-     public Vakje getWest() {
+
+    public Vakje getEast() {
         return buren[1];
+    }
+
+    public Vakje getSouth() {
+        return buren[2];
+    }
+
+    public Vakje getWest() {
+        return buren[3];
     }
 }

@@ -30,7 +30,7 @@ public class Doolhof extends JPanel {
         this.Y = y;
         setSize(780, 600);
         setLayout(null);
-       
+
 
         //
         //        File archivo = new File("doolhof3.txt");
@@ -54,8 +54,8 @@ public class Doolhof extends JPanel {
         addBuren();
 
         addVakjes();
-        
-         addKeyListener(new KeyListener() {
+
+        addKeyListener(new KeyListener() {
 
             @Override
             public void keyTyped(KeyEvent e) {
@@ -66,6 +66,7 @@ public class Doolhof extends JPanel {
                 int keyCode = e.getKeyCode();
                 if (keyCode == KeyEvent.VK_LEFT) {
                     //grens bepalen
+                    System.out.println("LEFT");
                 }
                 if (keyCode == KeyEvent.VK_RIGHT) {
                     speler.move(1);
@@ -83,7 +84,7 @@ public class Doolhof extends JPanel {
         });
         //requestFocus(true);
         setFocusable(true);
-       
+        speler.move(1);
     }
 
     private File zoekMatrix(int levelNr) {
@@ -172,11 +173,8 @@ public class Doolhof extends JPanel {
             for (int j = 0; j < Y; j++) {
                 matrix[i][j].setBounds(i * 30, j * 30, 30, 30);
                 add(matrix[i][j]);
-//                matrix[i][j].repaint();
             }
         }
-
-//        repaint();
     }
 
     private void addBuren() {
@@ -216,8 +214,6 @@ public class Doolhof extends JPanel {
             for (int j = 0; j < Y; j++) {
                 matrix[i][j].setPosX(i * 30);
                 matrix[i][j].setPosY(j * 30);
-//                System.out.println("x: "+matrix[i][j].getPosX());
-//                System.out.println("y: "+matrix[i][j].getPosY());
             }
 
         }

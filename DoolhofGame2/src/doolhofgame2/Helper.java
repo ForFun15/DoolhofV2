@@ -17,6 +17,12 @@ public class Helper extends SpelItem {
         image = new ImageIcon(getClass().getResource("/resources/imgHelp.png")).getImage();
     }
     
+     @Override
+    public void voerActie() {
+        super.voerActie();
+        
+    }
+    
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
