@@ -28,6 +28,8 @@ public class Muur extends Vakje {
             image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
         }
     }
+    
+    
 
     protected void paintComponent(Graphics g) {
 

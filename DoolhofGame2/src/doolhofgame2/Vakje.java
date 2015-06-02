@@ -23,16 +23,16 @@ public class Vakje extends JComponent {
 
     public Vakje() {
     }
-    public Vakje(int levelVk){
+
+    public Vakje(int levelVk) {
         this.levelVk = levelVk;
-  
-        
+
+
     }
 
-    public void switchImage(){
-        
+    public void switchImage() {
     }
-    
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
@@ -69,5 +69,21 @@ public class Vakje extends JComponent {
 
     public Vakje getWest() {
         return buren[3];
+    }
+
+    public void setNorth(Vakje buur) {
+        this.buren[0] = buur;
+    }
+    
+    public void setEast(Vakje buur) {
+        this.buren[1] = buur;
+    }
+    
+    public void setSouth(Vakje buur) {
+        this.buren[2] = buur;
+    }
+    
+    public void setWest(Vakje buur) {
+        this.buren[3] = buur;
     }
 }

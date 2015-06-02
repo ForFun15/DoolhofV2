@@ -85,6 +85,11 @@ public class Doolhof extends JPanel {
         //requestFocus(true);
         setFocusable(true);
         speler.move(1);
+        speler.move(1);
+        speler.move(2);
+        speler.move(0);
+        speler.move(3);
+        
     }
 
     private File zoekMatrix(int levelNr) {
