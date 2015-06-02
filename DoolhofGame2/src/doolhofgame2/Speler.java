@@ -6,7 +6,6 @@ package doolhofgame2;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
@@ -64,16 +63,9 @@ public class Speler extends JComponent {
 
         if (canMove(d)) {
             Pad buur = (Pad) getBuur(d);
-            if (buur.getSpelitem() != null) {
-                if (buur.getSpelitem().isPickable) {
-                    setBazooka((Bazooka) buur.getSpelitem());
-                    buur.setSpelitem(null);
-                } else {
-                    buur.getSpelitem().voerActie();
-                }
-            }
             swapPad(pad, buur);
         }
+
 
     }
 
@@ -159,9 +151,25 @@ public class Speler extends JComponent {
     }
 
     private void swapPad(Pad from, Pad to) {
+//        if (to.getSpelitem() != null) {
+//            if (to.getSpelitem().isPickable) {
+//                setBazooka((Bazooka) to.getSpelitem());
+//                to.setSpelitem(null);
+//                System.out.println(to.getSpelitem());
+//                to.repaint();
+//
+//            } else {
+////                    buur.getSpelitem().voerActie();
+//                to.setSpelitem(null);
+////                    buur.repaint();
+//
+//            }
+//        }
         setPad(to);
         from.setSpeler(null);
         from.repaint();
         to.repaint();
+        
+
     }
 }

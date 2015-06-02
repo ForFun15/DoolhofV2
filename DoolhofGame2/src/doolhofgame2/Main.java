@@ -7,6 +7,8 @@ package doolhofgame2;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 /**
@@ -14,14 +16,13 @@ import javax.swing.*;
  * @author Karen
  */
 public class Main extends JFrame {
-
-
+    
     private Level level;
     private JPanel startPage;
     private JButton start;
     ImageIcon image1;
     ImageIcon image2;
-
+    
     public Main() {
         image1 = new ImageIcon(getClass().getResource("/resources/Slide1.png"));
         image2 = new ImageIcon(getClass().getResource("/resources/Start.png"));
@@ -31,35 +32,44 @@ public class Main extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.BLACK);
         setLocationRelativeTo(null);
+        
+        
     }
-
+    
     private void btnStartMouseClicked(MouseEvent evt) {
+        
 //        startPage.setVisible(false);
-//        Level level = new Level();
-//        level.addKeyListener(new Key());
-//        //level.requestFocus();
-////        level.setFocusable(true);
-////        level.requestFocusInWindow();
-////        level.setVisible(true);
+//        startPage.setFocusable(false);
+//        level = new Level();
+//        level.addKeyListener(level);
+//        level.setFocusable(true);
+//        level.requestFocus(true);
 //        add(level);
-
+//        repaint();
+//        
     }
-
+    
     public void init() {
-
+        
         start = new JButton();
         start.setIcon(image2);
         start.setLocation(450, 605);
         start.setBorderPainted(false);
         start.setBackground(Color.BLACK);
         start.addMouseListener(new MouseAdapter() {
-
+            
             @Override
             public void mouseClicked(MouseEvent evt) {
                 btnStartMouseClicked(evt);
             }
         });
 
+        level = new Level();
+        level.addKeyListener(level);
+        level.setFocusable(true);
+        level.requestFocus(true);
+        add(level);
+        
 //        JLabel imgPage = new JLabel(image1);
 //        startPage = new JPanel();
 //        startPage.setBackground(Color.BLACK);
@@ -67,12 +77,10 @@ public class Main extends JFrame {
 //        startPage.setLocation(0, 0);
 //        startPage.add(start);
 //        add(startPage);
-
-        level = new Level();
-              
-        add(level);
+        
+        
         setVisible(true);
-
+        
     }
 
     /**
@@ -82,60 +90,7 @@ public class Main extends JFrame {
         // TODO code application logic here
         Main principaal = new Main();
         principaal.init();
-
-
+        
+        
     }
-//    public class AL extends KeyAdapter {
-//
-//        public void keyPressed(KeyEvent e) {
-//            int keyCode = e.getKeyCode();
-//            if (keyCode == e.VK_LEFT) {
-//                //grens bepalen
-//                if (x <= 0) {
-//                    x = 0;
-//                } else {
-//                    x -= 10;
-//                }
-//            }
-//            if (keyCode == e.VK_RIGHT) {
-//                if (x >= 230) {
-//                    x = 230;
-//
-//                } else {
-//                    x += 10;
-//                }
-//            }
-//            if (keyCode == e.VK_UP) {
-//                if (y <= 25) {
-//                    y = 25;
-//
-//                } else {
-//                    y -= 10;
-//                }
-//            }
-//            if (keyCode == e.VK_DOWN) {
-//                if (y >= 230) {
-//                    y = 230;
-//
-//                } else {
-//                    y += 10;
-//                }
-//            }
-//        }
-//
-//        public void KeyReleased(KeyEvent e) {
-//        }
-//    }
-//    public void paint(Graphics g) {
-//        dbImage = createImage(getWidth(), getHeight());
-//        dbg = dbImage.getGraphics();
-//        paintComponent(dbg);
-//        g.drawImage(dbImage, 0, 0, this);
-//    }
-//
-//    public void paintComponent(Graphics g) {
-//        g.fillOval(x, y, 15, 15);
-//        repaint();
-//
-//    }
 }

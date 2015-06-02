@@ -13,18 +13,18 @@ import javax.swing.ImageIcon;
  */
 public class Pad extends Vakje {
 
-    private SpelItem spelitem;
+    private SpelItem spelitem = null;
     private Speler speler;
 
     public Pad() {
         image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
         isWalkable = true;
-        switchImage();       
+        switchImage();
 
     }
 
-   public final void switchImage(){
-       
+    public final void switchImage() {
+
         if (levelVk == 1) {
             image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
         } else if (levelVk == 2) {
@@ -86,6 +86,9 @@ public class Pad extends Vakje {
         g.drawImage(image, posX, posY, this);
         if (speler != null) {
             speler.repaint();
+        }
+        if(spelitem != null){
+            spelitem.repaint();
         }
     }
 }

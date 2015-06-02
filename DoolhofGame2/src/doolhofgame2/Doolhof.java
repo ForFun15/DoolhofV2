@@ -4,11 +4,7 @@
  */
 package doolhofgame2;
 
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.*;
 import java.util.*;
 import javax.swing.JPanel;
@@ -30,6 +26,8 @@ public class Doolhof extends JPanel {
         this.Y = y;
         setSize(780, 600);
         setLayout(null);
+        //setFocusable(true);
+
 
 
         //
@@ -55,41 +53,6 @@ public class Doolhof extends JPanel {
 
         addVakjes();
 
-        addKeyListener(new KeyListener() {
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                int keyCode = e.getKeyCode();
-                if (keyCode == KeyEvent.VK_LEFT) {
-                    //grens bepalen
-                    System.out.println("LEFT");
-                }
-                if (keyCode == KeyEvent.VK_RIGHT) {
-                    speler.move(1);
-                }
-                if (keyCode == KeyEvent.VK_UP) {
-                    speler.move(0);
-                }
-                if (keyCode == KeyEvent.VK_DOWN) {
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
-        //requestFocus(true);
-        setFocusable(true);
-        speler.move(1);
-        speler.move(1);
-        speler.move(2);
-        speler.move(0);
-        speler.move(3);
-        
     }
 
     private File zoekMatrix(int levelNr) {
@@ -223,4 +186,22 @@ public class Doolhof extends JPanel {
 
         }
     }
+
+
+    public void keyPressed(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+        if (keyCode == KeyEvent.VK_LEFT) {
+            speler.move(3);
+        }
+        if (keyCode == KeyEvent.VK_RIGHT) {
+            speler.move(1);
+        }
+        if (keyCode == KeyEvent.VK_UP) {
+            speler.move(0);
+        }
+        if (keyCode == KeyEvent.VK_DOWN) {
+            speler.move(2);
+        }
+    }
+
 }
