@@ -22,8 +22,7 @@ public class Pad extends Vakje {
         switchImage();
 
     }
-    
-    
+
     public final void switchImage() {
 
         if (levelVk == 1) {
@@ -37,6 +36,8 @@ public class Pad extends Vakje {
 
     public Pad(SpelItem spelitem) {
         this.spelitem = spelitem;
+        isWalkable = true;
+        switchImage();
         if (spelitem != null) {
             image = spelitem.image;
         } else {
@@ -70,17 +71,6 @@ public class Pad extends Vakje {
         }
     }
 
-//    protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        if (speler != null) {
-//            speler.repaint();
-//        } 
-//            if (spelitem != null) {
-//            spelitem.repaint();
-//        }
-//        
-//        
-//    }
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -88,7 +78,7 @@ public class Pad extends Vakje {
         if (speler != null) {
             speler.repaint();
         }
-        if(spelitem != null){
+        if (spelitem != null) {
             spelitem.repaint();
         }
     }

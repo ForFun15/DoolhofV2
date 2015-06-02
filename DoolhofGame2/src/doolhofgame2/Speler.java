@@ -62,6 +62,7 @@ public class Speler extends JComponent {
 
         if (canMove(d)) {
             Pad buur = (Pad) getBuur(d);
+            raakSpelItem(buur);
             swapPad(pad, buur);
         }
 
@@ -71,9 +72,7 @@ public class Speler extends JComponent {
         boolean result = false;
         Vakje buur = getBuur(d);
 
-        if (buur instanceof Pad) {
-            Pad nPad = (Pad) buur;
-            raakSpelItem(nPad);
+        if (buur.isWalkable) {
             result = true;
         }
         return result;
@@ -85,14 +84,9 @@ public class Speler extends JComponent {
             if (pad.getSpelitem().isPickable) {
                 setBazooka((Bazooka) pad.getSpelitem());
                 pad.setSpelitem(null);
-                pad.setIsWalkable(true);
-         
-
             } else {
                 pad.getSpelitem().voerActie();
                 pad.setSpelitem(null);
-                pad.setIsWalkable(true);
-             
             }
         }
 
@@ -114,6 +108,24 @@ public class Speler extends JComponent {
             setDir(3);
         }
         return buur;
+    }
+    
+    private void loadImages() {
+
+        imgR = new ImageIcon(getClass().getResource("/resources/imgR.png")).getImage();
+        imgL = new ImageIcon(getClass().getResource("/resources/imgL.png")).getImage();
+        imgU = new ImageIcon(getClass().getResource("/resources/imgU.png")).getImage();
+        imgD = new ImageIcon(getClass().getResource("/resources/imgD.png")).getImage();
+    }
+
+    private void swapPad(Pad from, Pad to) {
+
+        setPad(to);
+        from.setSpeler(null);
+        from.repaint();
+        to.repaint();
+
+
     }
 
     public int getDir() {
@@ -161,21 +173,5 @@ public class Speler extends JComponent {
         this.positieY = positieY;
     }
 
-    private void loadImages() {
-
-        imgR = new ImageIcon(getClass().getResource("/resources/imgR.png")).getImage();
-        imgL = new ImageIcon(getClass().getResource("/resources/imgL.png")).getImage();
-        imgU = new ImageIcon(getClass().getResource("/resources/imgU.png")).getImage();
-        imgD = new ImageIcon(getClass().getResource("/resources/imgD.png")).getImage();
-    }
-
-    private void swapPad(Pad from, Pad to) {
-
-        setPad(to);
-        from.setSpeler(null);
-        from.repaint();
-        to.repaint();
-
-
-    }
+    
 }

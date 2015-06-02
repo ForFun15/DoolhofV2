@@ -16,7 +16,7 @@ public class SpelItem extends JComponent {
 
     protected Image image;
     protected boolean isPickable = false;
-//jhkhkjhkjhkh
+
 
     public SpelItem() {
     }

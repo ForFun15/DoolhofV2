@@ -18,6 +18,7 @@ public class Doolhof extends JPanel {
     private int X;
     private int Y;
     private Vakje[][] matrix;
+    private ArrayList<File> files;
     private Speler speler = null;
 
     public Doolhof(int levelNr, int x, int y) {
@@ -26,11 +27,6 @@ public class Doolhof extends JPanel {
         this.Y = y;
         setSize(780, 600);
         setLayout(null);
-        //setFocusable(true);
-
-
-
-
         File file = zoekMatrix(levelNr);
 
         fillMatrix(file);
