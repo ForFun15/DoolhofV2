@@ -15,16 +15,14 @@ import javax.swing.JPanel;
  */
 public class Doolhof extends JPanel {
 
-    private int X;
-    private int Y;
+    private final int X = 26;
+    private final int Y = 20;
     private Vakje[][] matrix;
-    private ArrayList<File> files;
+    //private ArrayList<File> files;
     private Speler speler = null;
 
-    public Doolhof(int levelNr, int x, int y) {
-
-        this.X = x;
-        this.Y = y;
+    public Doolhof(int levelNr) {
+//(int nextLevel, int currentLevel)
         setSize(780, 600);
         setLayout(null);
         File file = zoekMatrix(levelNr);
@@ -38,8 +36,17 @@ public class Doolhof extends JPanel {
     }
 
     private File zoekMatrix(int levelNr) {
-
+//    private File getFile(int nextLevel, int currentLevel){
         File file = null;
+//        files = new ArrayList<>();
+//
+//
+//        files.add(new File("doolhof1.txt"));
+//        files.add(new File("doolhof2.txt"));
+//        files.add(new File("doolhof3.txt"));
+//        Collections.shuffle(files);
+//        File file = files.get(levelNr-1);
+//        return(file);
 
         switch (levelNr) {
             case 1:
@@ -58,12 +65,13 @@ public class Doolhof extends JPanel {
         return file;
     }
 
-    private void fillMatrix(File file) {
+    private void fillMatrix(File file) {//int levelNr
         FileReader arch;
         StringTokenizer st;
         BufferedReader buff = null;
         matrix = new Vakje[X][Y];
-
+        Random rand = new Random();
+        int imgMuur = rand.nextInt(3) + 0;
 
         try {
             arch = new FileReader(file); // Bestand lezen
@@ -78,7 +86,7 @@ public class Doolhof extends JPanel {
                 for (int j = 0; j < Y; ++j) {
                     int num = Integer.parseInt(st.nextToken());
                     if (num == 1) {
-                        Muur muur = new Muur();
+                        Muur muur = new Muur(imgMuur);
                         matrix[i][j] = muur;
                     } else if (num == 0) {
                         Pad pad = new Pad();

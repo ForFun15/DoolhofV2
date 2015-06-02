@@ -19,25 +19,11 @@ public class Pad extends Vakje {
     public Pad() {
         image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
         isWalkable = true;
-        switchImage();
-
-    }
-
-    public final void switchImage() {
-
-        if (levelVk == 1) {
-            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
-        } else if (levelVk == 2) {
-            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
-        } else if (levelVk == 3) {
-            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
-        }
     }
 
     public Pad(SpelItem spelitem) {
         this.spelitem = spelitem;
         isWalkable = true;
-        switchImage();
         if (spelitem != null) {
             image = spelitem.image;
         } else {

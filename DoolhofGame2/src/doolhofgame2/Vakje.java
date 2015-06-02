@@ -19,23 +19,14 @@ public class Vakje extends JComponent {
     //north 0, east 1, south 2, west 3
     protected int posX, posY;
     protected boolean isWalkable = false;
-    protected int levelVk;
-  
 
     public Vakje() {
     }
 
-    public Vakje(int levelVk) {
-        this.levelVk = levelVk;
-
-
-    }
+  
 
     public void setIsWalkable(boolean isWalkable) {
         this.isWalkable = isWalkable;
-    }
-
-    public void switchImage() {
     }
 
     protected void paintComponent(Graphics g) {

@@ -20,6 +20,7 @@ public class Speler extends JComponent {
     private Pad pad;
     private int dir;// 0:up 1:right 2:down 3:left
     private Bazooka bazooka = null;
+    
 
     public Speler() {
 

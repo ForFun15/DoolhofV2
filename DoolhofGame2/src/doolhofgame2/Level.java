@@ -23,8 +23,7 @@ public class Level extends JPanel implements KeyListener {
     private Teller timer;
     private JLabel label;
     private JButton opnieuw;
-    private final int X = 26;
-    private final int Y = 20;
+    
 
 
     public Level() {
@@ -63,7 +62,8 @@ public class Level extends JPanel implements KeyListener {
         opnieuw.setBounds(700, 10, 80, 30);
         add(opnieuw);
 
-        doolhof = new Doolhof(levelNr, X, Y);
+        doolhof = new Doolhof(levelNr);
+//        int nextLevel, int currentLevel
         doolhof.setLocation(60, 50);
         doolhof.setFocusable(true);
         doolhof.requestFocusInWindow();
@@ -75,6 +75,7 @@ public class Level extends JPanel implements KeyListener {
 
     private void btnStartMouseClicked(MouseEvent evt) {
         timer.stopTimer();
+        this.removeAll();
         this.repaint();
         start();
     }
