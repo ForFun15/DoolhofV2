@@ -30,24 +30,10 @@ public class Doolhof extends JPanel {
 
 
 
-        //
-        //        File archivo = new File("doolhof3.txt");
-        //        try{
-        //            PrintWriter escribo = new PrintWriter(new BufferedWriter(new FileWriter(archivo)));
-        //            for (int i = 0; i < 26; i++) {
-        //               escribo.println("1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1");
-        //            }
-        //            escribo.close();
-        //        }catch(IOException ex){
-        //      
-        //System.out.println(
-        //        "error " + ex);
-        //        }
+
         File file = zoekMatrix(levelNr);
 
         fillMatrix(file);
-
-        setPositionVakjes();
 
         addBuren();
 
@@ -139,7 +125,9 @@ public class Doolhof extends JPanel {
 
         for (int i = 0; i < X; i++) {
             for (int j = 0; j < Y; j++) {
-                matrix[i][j].setBounds(i * 30, j * 30, 30, 30);
+                matrix[i][j].setPosX(i * 30);
+                matrix[i][j].setPosY(j * 30);
+                matrix[i][j].setBounds(matrix[i][j].getPosX(), matrix[i][j].getPosY(), 30, 30);
                 add(matrix[i][j]);
             }
         }
@@ -177,17 +165,6 @@ public class Doolhof extends JPanel {
         }
     }
 
-    private void setPositionVakjes() {
-        for (int i = 0; i < X; i++) {
-            for (int j = 0; j < Y; j++) {
-                matrix[i][j].setPosX(i * 30);
-                matrix[i][j].setPosY(j * 30);
-            }
-
-        }
-    }
-
-
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_LEFT) {
@@ -203,5 +180,4 @@ public class Doolhof extends JPanel {
             speler.move(2);
         }
     }
-
 }

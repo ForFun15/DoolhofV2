@@ -22,7 +22,8 @@ public class Pad extends Vakje {
         switchImage();
 
     }
-
+    
+    
     public final void switchImage() {
 
         if (levelVk == 1) {

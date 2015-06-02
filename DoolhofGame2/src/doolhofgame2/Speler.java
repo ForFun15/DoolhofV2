@@ -15,15 +15,14 @@ import javax.swing.JComponent;
  */
 public class Speler extends JComponent {
 
-    private int positieX, positieY, dx, dy;
+    private int positieX, positieY;
     private Image image, imgR, imgL, imgU, imgD;
     private Pad pad;
     private int dir;// 0:up 1:right 2:down 3:left
     private Bazooka bazooka = null;
-//    private Key key;
 
     public Speler() {
-//        addKeyListener(key);
+
         image = new ImageIcon(getClass().getResource("/resources/imgR.png")).getImage();
         loadImages();
     }
@@ -66,17 +65,37 @@ public class Speler extends JComponent {
             swapPad(pad, buur);
         }
 
-
     }
 
     public boolean canMove(int d) {
         boolean result = false;
         Vakje buur = getBuur(d);
-        if (buur.isWalkable) {
+
+        if (buur instanceof Pad) {
+            Pad nPad = (Pad) buur;
+            raakSpelItem(nPad);
             result = true;
         }
-
         return result;
+    }
+
+    private void raakSpelItem(Pad pad) {
+
+        if (pad.getSpelitem() != null) {
+            if (pad.getSpelitem().isPickable) {
+                setBazooka((Bazooka) pad.getSpelitem());
+                pad.setSpelitem(null);
+                pad.setIsWalkable(true);
+         
+
+            } else {
+                pad.getSpelitem().voerActie();
+                pad.setSpelitem(null);
+                pad.setIsWalkable(true);
+             
+            }
+        }
+
     }
 
     private Vakje getBuur(int d) {
@@ -151,25 +170,12 @@ public class Speler extends JComponent {
     }
 
     private void swapPad(Pad from, Pad to) {
-//        if (to.getSpelitem() != null) {
-//            if (to.getSpelitem().isPickable) {
-//                setBazooka((Bazooka) to.getSpelitem());
-//                to.setSpelitem(null);
-//                System.out.println(to.getSpelitem());
-//                to.repaint();
-//
-//            } else {
-////                    buur.getSpelitem().voerActie();
-//                to.setSpelitem(null);
-////                    buur.repaint();
-//
-//            }
-//        }
+
         setPad(to);
         from.setSpeler(null);
         from.repaint();
         to.repaint();
-        
+
 
     }
 }

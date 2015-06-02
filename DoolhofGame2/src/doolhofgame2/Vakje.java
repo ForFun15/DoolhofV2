@@ -20,6 +20,7 @@ public class Vakje extends JComponent {
     protected int posX, posY;
     protected boolean isWalkable = false;
     protected int levelVk;
+  
 
     public Vakje() {
     }
@@ -28,6 +29,10 @@ public class Vakje extends JComponent {
         this.levelVk = levelVk;
 
 
+    }
+
+    public void setIsWalkable(boolean isWalkable) {
+        this.isWalkable = isWalkable;
     }
 
     public void switchImage() {
