@@ -21,6 +21,7 @@ public class SpelItem extends JComponent {
     }
 
     public void voerActie() {
+        
     }
 
     protected void paintComponent(Graphics g) {

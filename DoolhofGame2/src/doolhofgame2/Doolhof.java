@@ -50,13 +50,13 @@ public class Doolhof extends JPanel {
 
         switch (levelNr) {
             case 1:
-                file = new File("doolhof1.txt");
+                file = new File("doolhof2.txt");
                 break;
             case 2:
                 file = new File("doolhof2.txt");
                 break;
             case 3:
-                file = new File("doolhof3.txt");
+                file = new File("doolhof1.txt");
                 break;
             default:
                 System.out.println("Fout bij File in doolhof.java");
