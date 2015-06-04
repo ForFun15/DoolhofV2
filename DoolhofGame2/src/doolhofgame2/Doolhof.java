@@ -37,8 +37,8 @@ public class Doolhof extends JPanel {
     }
 
 //    private File zoekMatrix(int levelNr) {
-    private File getFile(int level){
-     //   File file = null;
+    private File getFile(int level) {
+        //   File file = null;
         files = new ArrayList<>();
 
 
@@ -46,8 +46,8 @@ public class Doolhof extends JPanel {
         files.add(new File("doolhof2.txt"));
         files.add(new File("doolhof3.txt"));
         Collections.shuffle(files);
-        File file = files.get(level-1);
-        return(file);
+        File file = files.get(level - 1);
+        return (file);
 //
 //        switch (level) {
 //            case 1:
@@ -105,12 +105,13 @@ public class Doolhof extends JPanel {
                     } else if (num == 4) {
                         Bazooka bazooka = new Bazooka();
                         Pad pBazooka = new Pad(bazooka);
+                        bazooka.setPad(pBazooka);
                         matrix[i][j] = pBazooka;
                     } else if (num == 5) {
                         ValsSpeler valsp = new ValsSpeler();
                         Pad pVspeler = new Pad(valsp);
                         matrix[i][j] = pVspeler;
-                    } else  if (num == 6) {
+                    } else if (num == 6) {
                         Helper helper = new Helper();
                         Pad pHelper = new Pad(helper);
                         matrix[i][j] = pHelper;
@@ -144,11 +145,13 @@ public class Doolhof extends JPanel {
     }
 
     private void addBuren() {
+        Vakje nullVakje = new Vakje();
+        nullVakje = null;
         for (int i = 0; i < X; i++) {
             for (int j = 0; j < Y; j++) {
                 // bepaal buren
                 if (i == 0) {
-                    matrix[i][j].buren[3] = null; //west buur
+                    matrix[i][j].buren[3] = nullVakje; //west buur
                     matrix[i][j].buren[1] = matrix[i + 1][j]; // east buur
                 } else {
                     if (i < X - 1) {
@@ -156,11 +159,11 @@ public class Doolhof extends JPanel {
                         matrix[i][j].buren[1] = matrix[i + 1][j]; // east buur
                     } else if (i == X - 1) {
                         matrix[i][j].buren[3] = matrix[i - 1][j]; //west buur
-                        matrix[i][j].buren[1] = null; // east buur
+                        matrix[i][j].buren[1] = nullVakje; // east buur
                     }
                 }
                 if (j == 0) {
-                    matrix[i][j].buren[0] = null; //north buur
+                    matrix[i][j].buren[0] = nullVakje; //north buur
                     matrix[i][j].buren[2] = matrix[i][j + 1]; // south buur
                 } else {
                     if (j < Y - 1) {
@@ -168,7 +171,7 @@ public class Doolhof extends JPanel {
                         matrix[i][j].buren[2] = matrix[i][j + 1]; // south buur
                     } else if (j == Y - 1) {
                         matrix[i][j].buren[0] = matrix[i][j - 1]; //north buur
-                        matrix[i][j].buren[2] = null; // south buur
+                        matrix[i][j].buren[2] = nullVakje; // south buur
                     }
                 }
             }
@@ -188,16 +191,12 @@ public class Doolhof extends JPanel {
         }
         if (keyCode == KeyEvent.VK_DOWN) {
             speler.move(2);
-            
+
         }
-        if(keyCode == KeyEvent.VK_S)
-        {
-            
-            //speler.schietMuur();
-            System.out.println("baxoo" + e);
+        if (keyCode == KeyEvent.VK_S) {
+
+            speler.schietMuur();
+            //System.out.println("baxoo" + e);
         }
     }
-    
-    
-    
 }

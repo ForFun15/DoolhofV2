@@ -16,19 +16,20 @@ public class SpelItem extends JComponent {
 
     protected Image image;
     protected boolean isPickable = false;
-    protected Speler speler = null;
-    
+    protected Pad pad;
+    protected Speler speler;
 
     public SpelItem() {
     }
 
     public void voerActie() {
-        
     }
-    
-      public void setSpeler(Speler speler) {
-        this.speler = speler;
+
+    public void setSpeler(Speler speler) {
+       
     }
+
+  
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

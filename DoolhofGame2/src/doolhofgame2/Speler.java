@@ -43,6 +43,7 @@ public class Speler extends JComponent {
     public void setBazooka(SpelItem bazooka) {
         this.bazooka = bazooka;
         bazooka.setSpeler(this);
+
     }
 
     public SpelItem getBazooka() {
@@ -61,6 +62,7 @@ public class Speler extends JComponent {
         if (bazooka != null) {
             bazooka.voerActie();
             setBazooka(null);
+            //System.out.println("bazookka" + getBazooka());
         }
     }
 
@@ -78,9 +80,14 @@ public class Speler extends JComponent {
         boolean result = false;
         Vakje buur = getBuur(d);
 
-        if (buur.isWalkable) {
-            result = true;
+        if (buur == null) {
+            result = false;
+        } else {
+            if (buur.isWalkable) {
+                result = true;
+            }
         }
+
         return result;
     }
 
@@ -88,14 +95,12 @@ public class Speler extends JComponent {
 
         if (pad.getSpelitem() != null) {
             if (pad.getSpelitem().isPickable == true) {
-                
-                
                 setBazooka(pad.getSpelitem());
                 pad.setSpelitem(null);
-                System.out.println("bazookka" + getBazooka());
-                
+                //System.out.println("bazookka" + getBazooka());
+
             } else {
-                
+
                 pad.getSpelitem().voerActie();
                 //System.out.println("get" + pad.getSpelitem());
                 pad.setSpelitem(null);

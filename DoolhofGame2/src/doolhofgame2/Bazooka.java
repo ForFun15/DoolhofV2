@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  */
 public class Bazooka extends SpelItem {
 
-    //private Speler speler = null;
+   
 
     public Bazooka() {
         image = new ImageIcon(getClass().getResource("/resources/imgBaz.png")).getImage();
@@ -28,33 +28,46 @@ public class Bazooka extends SpelItem {
 
     }
 
-  
+     public void setPad(Pad pad) {
+        this.pad = pad;
+    }
+    public Pad getPad() {
+        return pad;
+    }
+
+    @Override
+    public void setSpeler(Speler speler) {
+        super.setSpeler(speler);
+    }
+
+   
+
 
     public void actie() {
         int dir = speler.getDir();
         if (dir == 0) {
-            if (!speler.getPad().getNorth().isWalkable) {
-                Pad pad = new Pad();
-                speler.getPad().setNorth(pad);
+            if (!pad.getSpeler().getPad().getNorth().isWalkable) {
+                Pad nPad = new Pad();
+                speler.getPad().setNorth(nPad);
                 
             }
         }
         if (dir == 1) {
             if (!speler.getPad().getEast().isWalkable) {
-                Pad pad = new Pad();
-                speler.getPad().setEast(pad);
+                Pad nPad = new Pad();
+                speler.getPad().setEast(nPad);
             }
         }
         if (dir == 2) {
             if (!speler.getPad().getSouth().isWalkable) {
-                Pad pad = new Pad();
-                speler.getPad().setSouth(pad);
+                Pad nPad = new Pad();
+                speler.getPad().setSouth(nPad);
             }
         }
         if (dir == 3) {
             if (!speler.getPad().getWest().isWalkable) {
-                Pad pad = new Pad();
-                speler.getPad().setWest(pad);
+                Pad nPad = new Pad();
+                speler.getPad().setWest(nPad);
             }
         }
 
