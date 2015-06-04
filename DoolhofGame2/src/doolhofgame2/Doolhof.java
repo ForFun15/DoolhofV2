@@ -18,14 +18,15 @@ public class Doolhof extends JPanel {
     private final int X = 26;
     private final int Y = 20;
     private Vakje[][] matrix;
-    //private ArrayList<File> files;
+    private ArrayList<File> files;
     private Speler speler = null;
 
-    public Doolhof(int levelNr) {
+    public Doolhof(int level) {
 //(int nextLevel, int currentLevel)
         setSize(780, 600);
         setLayout(null);
-        File file = zoekMatrix(levelNr);
+        //File file = zoekMatrix(levelNr);
+        File file = getFile(level);
 
         fillMatrix(file);
 
@@ -35,34 +36,34 @@ public class Doolhof extends JPanel {
 
     }
 
-    private File zoekMatrix(int levelNr) {
-//    private File getFile(int nextLevel, int currentLevel){
-        File file = null;
-//        files = new ArrayList<>();
-//
-//
-//        files.add(new File("doolhof1.txt"));
-//        files.add(new File("doolhof2.txt"));
-//        files.add(new File("doolhof3.txt"));
-//        Collections.shuffle(files);
-//        File file = files.get(levelNr-1);
-//        return(file);
+//    private File zoekMatrix(int levelNr) {
+    private File getFile(int level){
+     //   File file = null;
+        files = new ArrayList<>();
 
-        switch (levelNr) {
-            case 1:
-                file = new File("doolhof2.txt");
-                break;
-            case 2:
-                file = new File("doolhof2.txt");
-                break;
-            case 3:
-                file = new File("doolhof1.txt");
-                break;
-            default:
-                System.out.println("Fout bij File in doolhof.java");
-                break;
-        }
-        return file;
+
+        files.add(new File("doolhof1.txt"));
+        files.add(new File("doolhof2.txt"));
+        files.add(new File("doolhof3.txt"));
+        Collections.shuffle(files);
+        File file = files.get(level-1);
+        return(file);
+//
+//        switch (level) {
+//            case 1:
+//                file = new File("doolhof2.txt");
+//                break;
+//            case 2:
+//                file = new File("doolhof2.txt");
+//                break;
+//            case 3:
+//                file = new File("doolhof1.txt");
+//                break;
+//            default:
+//                System.out.println("Fout bij File in doolhof.java");
+//                break;
+//        }
+//        return file;
     }
 
     private void fillMatrix(File file) {//int levelNr
@@ -182,6 +183,7 @@ public class Doolhof extends JPanel {
         }
         if (keyCode == KeyEvent.VK_DOWN) {
             speler.move(2);
+            
         }
     }
 }

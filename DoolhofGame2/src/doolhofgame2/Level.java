@@ -23,8 +23,6 @@ public class Level extends JPanel implements KeyListener {
     private Teller timer;
     private JLabel label;
     private JButton opnieuw;
-    
-
 
     public Level() {
 
@@ -80,31 +78,20 @@ public class Level extends JPanel implements KeyListener {
         start();
     }
 
-    public Boolean getEndLevel() {
-        return endLevel;
-    }
-
-    public void setEndLevel(Boolean endLevel) {
-        this.endLevel = endLevel;
-    }
-
-    public Boolean getGameOver() {
-        return gameOver;
-    }
-
-    public void setGameOver(Boolean gameOver) {
-        this.gameOver = gameOver;
-    }
-
     public int getLevelNr() {
         return levelNr;
     }
 
-    public void setLevelNr(int levelNr) {
-        this.levelNr = levelNr;
+    public void nextLevel() {
+        if (endLevel) {
+            this.levelNr = levelNr + 1;
+        }
     }
 
- 
+    public void setEndLevel(Boolean endLevel) {
+        this.endLevel = endLevel;
+
+    }
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -120,5 +107,4 @@ public class Level extends JPanel implements KeyListener {
     public void keyReleased(KeyEvent e) {
         //throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }

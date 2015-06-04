@@ -5,6 +5,7 @@
 package doolhofgame2;
 
 import java.awt.Graphics;
+import java.util.Stack;
 import javax.swing.ImageIcon;
 
 /**
@@ -13,21 +14,29 @@ import javax.swing.ImageIcon;
  */
 public class Helper extends SpelItem {
 
+    Stack<Vakje> weg;
+
     public Helper() {
         image = new ImageIcon(getClass().getResource("/resources/imgHelp.png")).getImage();
+        weg = new Stack<>();
     }
-    
-     @Override
+
+    @Override
     public void voerActie() {
         super.voerActie();
-        
+
     }
-    
-    protected void paintComponent(Graphics g){
+
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
     }
     
-    
+    private boolean backtracking(Vakje helper, Vakje vriend){
+        
+       //if()
+        
+       return
+    }
     
 }

@@ -11,20 +11,38 @@ import javax.swing.ImageIcon;
  *
  * @author Karen
  */
-public class Vriend extends SpelItem{
-    public Vriend(){
-    image = new ImageIcon(getClass().getResource("/resources/imgVriend.png")).getImage();
-   
-    }
+public class Vriend extends SpelItem {
+
+    //private Level level = new Level();
+
     
-     @Override
+
+    public Vriend() {
+        image = new ImageIcon(getClass().getResource("/resources/imgVriend.png")).getImage();
+
+    }
+
+    @Override
     public void voerActie() {
         super.voerActie();
-        
+        actie();
+
     }
-    
-    protected void paintComponent(Graphics g){
+
+    private void actie() {
+        
+//        if (level.getLevelNr() < 4) {
+//            level.setEndLevel(true);
+//            level.nextLevel();
+//        } else {
+//            level.setEndLevel(true);
+//        }
+
+    }
+
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
+
     }
 }
