@@ -6,6 +6,7 @@ package doolhofgame2;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
 /**
@@ -18,16 +19,17 @@ public class Vakje extends JComponent {
     public Vakje[] buren = new Vakje[4];
     //north 0, east 1, south 2, west 3
     protected int posX, posY;
-    protected boolean isWalkable = false;
+    protected boolean isWalkable;
 
     public Vakje() {
     }
 
-  
-
     public void setIsWalkable(boolean isWalkable) {
         this.isWalkable = isWalkable;
     }
+
+   
+   
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -70,15 +72,15 @@ public class Vakje extends JComponent {
     public void setNorth(Vakje buur) {
         this.buren[0] = buur;
     }
-    
+
     public void setEast(Vakje buur) {
         this.buren[1] = buur;
     }
-    
+
     public void setSouth(Vakje buur) {
         this.buren[2] = buur;
     }
-    
+
     public void setWest(Vakje buur) {
         this.buren[3] = buur;
     }

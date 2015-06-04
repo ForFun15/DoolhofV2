@@ -19,8 +19,7 @@ public class Speler extends JComponent {
     private Image image, imgR, imgL, imgU, imgD;
     private Pad pad;
     private int dir;// 0:up 1:right 2:down 3:left
-    //private Bazooka bazooka = null;
-    private SpelItem bazooka = null;
+    private SpelItem gepakt = null;
 
     public Speler() {
 
@@ -40,14 +39,16 @@ public class Speler extends JComponent {
         return pad;
     }
 
-    public void setBazooka(SpelItem bazooka) {
-        this.bazooka = bazooka;
-        bazooka.setSpeler(this);
+    public void setGepakt(SpelItem bazooka) {
+        this.gepakt = bazooka;
+        if (gepakt != null) {
+            gepakt.setSpeler(this);
+        }
 
     }
 
-    public SpelItem getBazooka() {
-        return bazooka;
+    public SpelItem getGepakt() {
+        return gepakt;
     }
 
 //
@@ -58,10 +59,10 @@ public class Speler extends JComponent {
 
     }
 
-    public void schietMuur() {
-        if (bazooka != null) {
-            bazooka.voerActie();
-            setBazooka(null);
+    public void schietMuur(int dir) {
+        if (gepakt != null) {
+            gepakt.voerActie(dir);
+            setGepakt(null);
             //System.out.println("bazookka" + getBazooka());
         }
     }
@@ -70,7 +71,7 @@ public class Speler extends JComponent {
 
         if (canMove(d)) {
             Pad buur = (Pad) getBuur(d);
-            raakSpelItem(pad);
+            raakSpelItem(buur);
             swapPad(pad, buur);
         }
 
@@ -95,14 +96,11 @@ public class Speler extends JComponent {
 
         if (pad.getSpelitem() != null) {
             if (pad.getSpelitem().isPickable == true) {
-                setBazooka(pad.getSpelitem());
+                setGepakt((Bazooka) pad.getSpelitem());
                 pad.setSpelitem(null);
-                //System.out.println("bazookka" + getBazooka());
-
             } else {
-
                 pad.getSpelitem().voerActie();
-                //System.out.println("get" + pad.getSpelitem());
+                System.out.println("get" + pad.getSpelitem());
                 pad.setSpelitem(null);
 
             }

@@ -29,8 +29,14 @@ public class Vriend extends SpelItem {
 
     }
 
+    public void setPad(Pad pad) {
+        this.pad = pad;
+    }
+    
+    
+
     private void actie() {
-        
+        System.out.println("Vriend gevonden");  
 //        if (level.getLevelNr() < 4) {
 //            level.setEndLevel(true);
 //            level.nextLevel();

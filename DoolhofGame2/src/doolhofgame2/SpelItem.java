@@ -23,10 +23,13 @@ public class SpelItem extends JComponent {
     }
 
     public void voerActie() {
+        
     }
-
+    public void voerActie(int d) {
+    }
+    
     public void setSpeler(Speler speler) {
-       
+       this.speler = speler;
     }
 
   

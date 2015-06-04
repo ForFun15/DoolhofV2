@@ -100,7 +100,7 @@ public class Doolhof extends JPanel {
                     } else if (num == 3) {
                         Vriend vriend = new Vriend();
                         Pad pVriend = new Pad(vriend);
-                        //vriend.setPad(pVriend);
+                        vriend.setPad(pVriend);
                         matrix[i][j] = pVriend;
                     } else if (num == 4) {
                         Bazooka bazooka = new Bazooka();
@@ -195,7 +195,7 @@ public class Doolhof extends JPanel {
         }
         if (keyCode == KeyEvent.VK_S) {
 
-            speler.schietMuur();
+            speler.schietMuur(speler.getDir());
             //System.out.println("baxoo" + e);
         }
     }
