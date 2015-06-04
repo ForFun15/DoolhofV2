@@ -57,6 +57,7 @@ public class Pad extends Vakje {
         }
     }
 
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 

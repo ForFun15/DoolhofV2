@@ -13,13 +13,14 @@ import javax.swing.ImageIcon;
  */
 public class Bazooka extends SpelItem {
 
-    private Speler speler = null;
+    //private Speler speler = null;
 
     public Bazooka() {
         image = new ImageIcon(getClass().getResource("/resources/imgBaz.png")).getImage();
         isPickable = true;
+        
     }
-
+// speler 
     @Override
     public void voerActie() {
         super.voerActie();
@@ -27,9 +28,7 @@ public class Bazooka extends SpelItem {
 
     }
 
-    public void setSpeler(Speler speler) {
-        this.speler = speler;
-    }
+  
 
     public void actie() {
         int dir = speler.getDir();
@@ -37,6 +36,7 @@ public class Bazooka extends SpelItem {
             if (!speler.getPad().getNorth().isWalkable) {
                 Pad pad = new Pad();
                 speler.getPad().setNorth(pad);
+                
             }
         }
         if (dir == 1) {
@@ -58,8 +58,10 @@ public class Bazooka extends SpelItem {
             }
         }
 
+        
     }
 
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);

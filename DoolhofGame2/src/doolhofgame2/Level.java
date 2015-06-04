@@ -55,6 +55,7 @@ public class Level extends JPanel implements KeyListener {
         opnieuw.setBackground(Color.BLACK);
         opnieuw.addMouseListener(new MouseAdapter() {
 
+            @Override
             public void mouseClicked(MouseEvent evt) {
                 btnStartMouseClicked(evt);
             }
