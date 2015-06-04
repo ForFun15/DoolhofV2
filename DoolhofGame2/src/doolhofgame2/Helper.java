@@ -36,7 +36,7 @@ public class Helper extends SpelItem {
         
        //if()
         
-       return
+       return false;
     }
     
 }
