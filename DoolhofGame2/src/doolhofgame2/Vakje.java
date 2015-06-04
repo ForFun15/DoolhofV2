@@ -20,6 +20,8 @@ public class Vakje extends JComponent {
     //north 0, east 1, south 2, west 3
     protected int posX, posY;
     protected boolean isWalkable;
+    protected SpelItem spelitem = null;
+    protected Speler speler;
 
     public Vakje() {
     }
@@ -28,8 +30,21 @@ public class Vakje extends JComponent {
         this.isWalkable = isWalkable;
     }
 
-   
-   
+    public Vakje(SpelItem spelitem) {
+        this.spelitem = spelitem;
+    }
+
+    public void setSpelitem(SpelItem spelitem) {
+        this.spelitem = spelitem;
+    }
+
+    public void setSpeler(Speler speler) {
+        this.speler = speler;
+    }
+
+    public SpelItem getSpelitem() {
+        return spelitem;
+    }
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

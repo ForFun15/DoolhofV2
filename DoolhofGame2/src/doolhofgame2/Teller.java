@@ -19,9 +19,12 @@ public class Teller extends JPanel {
 
     public Teller(int teller) {
         this.teller = teller;// tel seconden
-        timer = new javax.swing.Timer(1000, new TimerHandler());
-        timer.start();
+        timer = new javax.swing.Timer(1000, new Teller.TimerHandler());
         setBackground(Color.BLACK);
+    }
+    
+    public void startTimer(){
+        timer.start();
     }
 
     public void stopTimer() {
@@ -36,6 +39,16 @@ public class Teller extends JPanel {
         g.drawString("Timer: " + teller, 10, 20);
 
     }
+
+    public int getTeller() {
+        return teller;
+    }
+
+    public void setTeller(int teller) {
+        this.teller = teller;
+    }
+    
+    
 
     class TimerHandler implements ActionListener {
 

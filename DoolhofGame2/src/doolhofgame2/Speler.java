@@ -17,7 +17,7 @@ public class Speler extends JComponent {
 
     private int positieX, positieY;
     private Image image, imgR, imgL, imgU, imgD;
-    private Pad pad;
+    private Vakje pad;
     private int dir;// 0:up 1:right 2:down 3:left
     private SpelItem gepakt = null;
 
@@ -30,14 +30,16 @@ public class Speler extends JComponent {
 //    public Speler(Pad pad) {
 //        setPad(pad);
 //    }
-    public void setPad(Pad pad) {
+    public void setPad(Vakje pad) {
         this.pad = pad;
         pad.setSpeler(this);
     }
 
-    public Pad getPad() {
+    public Vakje getPad() {
         return pad;
     }
+    
+    
 
     public void setGepakt(SpelItem bazooka) {
         this.gepakt = bazooka;
@@ -70,7 +72,7 @@ public class Speler extends JComponent {
     public void move(int d) {
 
         if (canMove(d)) {
-            Pad buur = (Pad) getBuur(d);
+            Vakje buur = getBuur(d);
             raakSpelItem(buur);
             swapPad(pad, buur);
         }
@@ -92,7 +94,7 @@ public class Speler extends JComponent {
         return result;
     }
 
-    private void raakSpelItem(Pad pad) {
+    private void raakSpelItem(Vakje pad) {
 
         if (pad.getSpelitem() != null) {
             if (pad.getSpelitem().isPickable == true) {
@@ -134,14 +136,13 @@ public class Speler extends JComponent {
         imgD = new ImageIcon(getClass().getResource("/resources/imgD.png")).getImage();
     }
 
-    private void swapPad(Pad from, Pad to) {
+    private void swapPad(Vakje from, Vakje to) {
 
+        to.repaint();
         setPad(to);
         from.setSpeler(null);
         from.repaint();
         to.repaint();
-
-
     }
 
     public int getDir() {

@@ -32,34 +32,27 @@ public class Bazooka extends SpelItem {
         super.setSpeler(speler);
     }
 
-    
     public void voerActie(int dir) {
-       
+
         if (dir == 0) {
-            if (!speler.getPad().getNorth().isWalkable) {
-                speler.getPad().getNorth().setIsWalkable(true); 
-                               
+            if (speler.getPad().getNorth() instanceof Muur) {
+                speler.getPad().getNorth().setIsWalkable(true);
             }
         }
         if (dir == 1) {
-            
-            if (!speler.getPad().getEast().isWalkable) {
-                Pad nPad = new Pad();
-                speler.getPad().setEast(nPad);
-                nPad.repaint();
-                System.out.println("Muur");
+
+            if (speler.getPad().getEast()instanceof Muur) {
+                speler.getPad().getEast().setIsWalkable(true);
             }
         }
         if (dir == 2) {
-            if (!speler.getPad().getSouth().isWalkable) {
-                Pad nPad = new Pad();
-                speler.getPad().setSouth(nPad);
+            if (speler.getPad().getSouth()instanceof Muur) {
+                speler.getPad().getSouth().setIsWalkable(true);
             }
         }
         if (dir == 3) {
-            if (!speler.getPad().getWest().isWalkable) {
-                Pad nPad = new Pad();
-                speler.getPad().setWest(nPad);
+            if (speler.getPad().getWest()instanceof Muur) {
+                speler.getPad().getWest().setIsWalkable(true);
             }
         }
 

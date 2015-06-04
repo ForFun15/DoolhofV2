@@ -23,9 +23,19 @@ public class Muur extends Vakje {
     @Override
     public void setIsWalkable(boolean isWalkable) {
         this.isWalkable = isWalkable;
+        repaint();
         if (this.isWalkable == true) {
             setWalkableImage();            
             repaint();
+        }
+    }
+    
+   public void setSpeler(Speler speler) {
+        this.speler = speler;
+        if (speler != null) {
+            image = speler.getImage();
+        } else {
+            image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
         }
     }
     
@@ -34,9 +44,12 @@ public class Muur extends Vakje {
     }
     
     protected void paintComponent(Graphics g) {
-        
-        g.drawImage(image, posX, posY, this);
         super.paintComponent(g);
+        g.drawImage(image, posX, posY, this);
+        if (speler != null) {
+            speler.repaint();
+        }
+        
     }
     
     private Image switchImage(int i) {

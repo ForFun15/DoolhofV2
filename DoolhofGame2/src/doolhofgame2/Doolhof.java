@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author Karen
  */
-public class Doolhof extends JPanel {
+public class Doolhof extends JPanel{
 
     private final int X = 26;
     private final int Y = 20;
@@ -22,10 +22,9 @@ public class Doolhof extends JPanel {
     private Speler speler = null;
 
     public Doolhof(int level) {
-//(int nextLevel, int currentLevel)
+
         setSize(780, 600);
         setLayout(null);
-        //File file = zoekMatrix(levelNr);
         File file = getFile(level);
 
         fillMatrix(file);
@@ -36,7 +35,7 @@ public class Doolhof extends JPanel {
 
     }
 
-//    private File zoekMatrix(int levelNr) {
+
     private File getFile(int level) {
         //   File file = null;
         files = new ArrayList<>();
@@ -45,25 +44,10 @@ public class Doolhof extends JPanel {
         files.add(new File("doolhof1.txt"));
         files.add(new File("doolhof2.txt"));
         files.add(new File("doolhof3.txt"));
-        Collections.shuffle(files);
+        //Collections.shuffle(files);
         File file = files.get(level - 1);
         return (file);
-//
-//        switch (level) {
-//            case 1:
-//                file = new File("doolhof2.txt");
-//                break;
-//            case 2:
-//                file = new File("doolhof2.txt");
-//                break;
-//            case 3:
-//                file = new File("doolhof1.txt");
-//                break;
-//            default:
-//                System.out.println("Fout bij File in doolhof.java");
-//                break;
-//        }
-//        return file;
+
     }
 
     private void fillMatrix(File file) {//int levelNr
@@ -194,9 +178,10 @@ public class Doolhof extends JPanel {
 
         }
         if (keyCode == KeyEvent.VK_S) {
-
             speler.schietMuur(speler.getDir());
-            //System.out.println("baxoo" + e);
+           
         }
     }
+
+
 }

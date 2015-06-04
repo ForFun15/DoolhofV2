@@ -13,8 +13,7 @@ import javax.swing.ImageIcon;
  */
 public class Pad extends Vakje {
 
-    private SpelItem spelitem = null;
-    private Speler speler;
+   
 
     public Pad() {
         image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
@@ -56,6 +55,8 @@ public class Pad extends Vakje {
             image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
         }
     }
+    
+    
 
     @Override
     protected void paintComponent(Graphics g) {

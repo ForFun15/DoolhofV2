@@ -5,8 +5,6 @@
 package doolhofgame2;
 
 import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 /**
@@ -16,14 +14,8 @@ import javax.swing.*;
 public class Main extends JFrame {
 
     private Level level;
-    private JPanel startPage;
-    private JButton start;
-    ImageIcon image1;
-    ImageIcon image2;
 
     public Main() {
-        image1 = new ImageIcon(getClass().getResource("/resources/Slide1.png"));
-        image2 = new ImageIcon(getClass().getResource("/resources/Start.png"));
         setTitle("Dolhoof Game");
         setSize(900, 700);
         setResizable(true);
@@ -34,48 +26,15 @@ public class Main extends JFrame {
 
     }
 
-    private void btnStartMouseClicked(MouseEvent evt) {
-//        startPage.setVisible(false);
-//        startPage.setFocusable(false);
-//        level = new Level();
-//        level.addKeyListener(level);
-//        level.setFocusable(true);
-//        level.requestFocus(true);
-//        add(level);
-//        repaint();
-//        
-    }
 
     public void init() {
 
-        start = new JButton();
-        start.setIcon(image2);
-        start.setLocation(450, 605);
-        start.setBorderPainted(false);
-        start.setBackground(Color.BLACK);
-        start.addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                btnStartMouseClicked(evt);
-            }
-        });
         
         level = new Level();
         level.addKeyListener(level);
         level.setFocusable(true);
         level.requestFocus(true);
         add(level);
-
-//        JLabel imgPage = new JLabel(image1);
-//        startPage = new JPanel();
-//        startPage.setBackground(Color.BLACK);
-//        startPage.add(imgPage);
-//        startPage.setLocation(0, 0);
-//        startPage.add(start);
-//        add(startPage);
-
-
         setVisible(true);
 
     }
