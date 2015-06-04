@@ -98,16 +98,21 @@ public class Doolhof extends JPanel {
                         speler.setPad(pSpeler);
                         matrix[i][j] = pSpeler;
                     } else if (num == 3) {
-                        Pad pVriend = new Pad(new Vriend());
+                        Vriend vriend = new Vriend();
+                        Pad pVriend = new Pad(vriend);
+                        //vriend.setPad(pVriend);
                         matrix[i][j] = pVriend;
                     } else if (num == 4) {
-                        Pad pBazooka = new Pad(new Bazooka());
+                        Bazooka bazooka = new Bazooka();
+                        Pad pBazooka = new Pad(bazooka);
                         matrix[i][j] = pBazooka;
                     } else if (num == 5) {
-                        Pad pVspeler = new Pad(new ValsSpeler());
+                        ValsSpeler valsp = new ValsSpeler();
+                        Pad pVspeler = new Pad(valsp);
                         matrix[i][j] = pVspeler;
-                    } else if (num == 6) {
-                        Pad pHelper = new Pad(new Helper());
+                    } else  if (num == 6) {
+                        Helper helper = new Helper();
+                        Pad pHelper = new Pad(helper);
                         matrix[i][j] = pHelper;
                     }
 
@@ -185,5 +190,14 @@ public class Doolhof extends JPanel {
             speler.move(2);
             
         }
+        if(keyCode == KeyEvent.VK_S)
+        {
+            
+            //speler.schietMuur();
+            System.out.println("baxoo" + e);
+        }
     }
+    
+    
+    
 }

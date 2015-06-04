@@ -19,8 +19,8 @@ public class Speler extends JComponent {
     private Image image, imgR, imgL, imgU, imgD;
     private Pad pad;
     private int dir;// 0:up 1:right 2:down 3:left
-    private Bazooka bazooka = null;
-    
+    //private Bazooka bazooka = null;
+    private SpelItem bazooka = null;
 
     public Speler() {
 
@@ -40,12 +40,17 @@ public class Speler extends JComponent {
         return pad;
     }
 
-    public void setBazooka(Bazooka bazooka) {
+    public void setBazooka(SpelItem bazooka) {
         this.bazooka = bazooka;
         bazooka.setSpeler(this);
     }
 
+    public SpelItem getBazooka() {
+        return bazooka;
+    }
+
 //
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
@@ -63,7 +68,7 @@ public class Speler extends JComponent {
 
         if (canMove(d)) {
             Pad buur = (Pad) getBuur(d);
-            raakSpelItem(buur);
+            raakSpelItem(pad);
             swapPad(pad, buur);
         }
 
@@ -82,12 +87,19 @@ public class Speler extends JComponent {
     private void raakSpelItem(Pad pad) {
 
         if (pad.getSpelitem() != null) {
-            if (pad.getSpelitem().isPickable) {
-                setBazooka((Bazooka) pad.getSpelitem());
+            if (pad.getSpelitem().isPickable == true) {
+                
+                
+                setBazooka(pad.getSpelitem());
                 pad.setSpelitem(null);
+                System.out.println("bazookka" + getBazooka());
+                
             } else {
+                
                 pad.getSpelitem().voerActie();
+                //System.out.println("get" + pad.getSpelitem());
                 pad.setSpelitem(null);
+
             }
         }
 
@@ -110,7 +122,7 @@ public class Speler extends JComponent {
         }
         return buur;
     }
-    
+
     private void loadImages() {
 
         imgR = new ImageIcon(getClass().getResource("/resources/imgR.png")).getImage();
@@ -173,6 +185,4 @@ public class Speler extends JComponent {
     public void setPositieY(int positieY) {
         this.positieY = positieY;
     }
-
-    
 }
