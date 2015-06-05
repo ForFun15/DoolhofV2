@@ -13,19 +13,21 @@ import javax.swing.JPanel;
  *
  * @author Karen
  */
-public class Doolhof extends JPanel{
+public class Doolhof extends JPanel {
 
     private final int X = 26;
     private final int Y = 20;
     private Vakje[][] matrix;
     private ArrayList<File> files;
     private Speler speler = null;
+    private Level level;
 
-    public Doolhof(int level) {
-
+    public Doolhof(Level level) {
+        this.level = level;
+        
         setSize(780, 600);
         setLayout(null);
-        File file = getFile(level);
+        File file = getFile(level.getLevelNr());
 
         fillMatrix(file);
 
@@ -34,7 +36,20 @@ public class Doolhof extends JPanel{
         addVakjes();
 
     }
+      public Doolhof(int LevelNr) {
+       // this.level = level;
+        
+        setSize(780, 600);
+        setLayout(null);
+        File file = getFile(LevelNr);
 
+        fillMatrix(file);
+
+        addBuren();
+
+        addVakjes();
+
+    }
 
     private File getFile(int level) {
         //   File file = null;
@@ -82,7 +97,7 @@ public class Doolhof extends JPanel{
                         speler.setPad(pSpeler);
                         matrix[i][j] = pSpeler;
                     } else if (num == 3) {
-                        Vriend vriend = new Vriend();
+                        Vriend vriend = new Vriend(level);
                         Pad pVriend = new Pad(vriend);
                         vriend.setPad(pVriend);
                         matrix[i][j] = pVriend;
@@ -179,9 +194,7 @@ public class Doolhof extends JPanel{
         }
         if (keyCode == KeyEvent.VK_S) {
             speler.schietMuur(speler.getDir());
-           
+
         }
     }
-
-
 }

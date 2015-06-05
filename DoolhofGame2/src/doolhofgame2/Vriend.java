@@ -13,13 +13,16 @@ import javax.swing.ImageIcon;
  */
 public class Vriend extends SpelItem {
 
-    //private Level level = new Level();
-
-    
+    private Level level;
 
     public Vriend() {
         image = new ImageIcon(getClass().getResource("/resources/imgVriend.png")).getImage();
 
+    }
+
+    public Vriend(Level level) {
+        image = new ImageIcon(getClass().getResource("/resources/imgVriend.png")).getImage();
+        this.level = level;
     }
 
     @Override
@@ -32,17 +35,14 @@ public class Vriend extends SpelItem {
     public void setPad(Pad pad) {
         this.pad = pad;
     }
-    
-    
 
     private void actie() {
-        System.out.println("Vriend gevonden");  
-//        if (level.getLevelNr() < 4) {
-//            level.setEndLevel(true);
-//            level.nextLevel();
-//        } else {
-//            level.setEndLevel(true);
-//        }
+        if (level.getLevelNr() < 4) {
+            level.setEndLevel(true);
+            level.nextLevel();
+        } else {
+            level.setEndLevel(true);
+        }
 
     }
 

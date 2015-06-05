@@ -22,6 +22,7 @@ public class Level extends JPanel implements KeyListener {
     private JLabel label, imgPage;
     private JButton opnieuw, startknop;
     private ImageIcon image1;
+    private boolean keyIsenabled = false;
 
     public Level() {
 
@@ -31,7 +32,6 @@ public class Level extends JPanel implements KeyListener {
         image1 = new ImageIcon(getClass().getResource("/resources/Slide1.png"));
         start();
 
-
     }
 
     private void start() {
@@ -40,7 +40,6 @@ public class Level extends JPanel implements KeyListener {
         timer.setBounds(600, 10, 100, 30);
         timer.setVisible(false);
         add(timer);
-
 
         startknop = new JButton("Start");
         startknop.setForeground(Color.GREEN);
@@ -73,7 +72,7 @@ public class Level extends JPanel implements KeyListener {
         label.setVisible(false);
         add(label);
 
-        doolhof = new Doolhof(levelNr);
+        doolhof = new Doolhof(this);
         doolhof.setLocation(60, 50);
         doolhof.setFocusable(true);
         doolhof.requestFocusInWindow();
@@ -85,8 +84,10 @@ public class Level extends JPanel implements KeyListener {
         imgPage.setVisible(true);
         add(imgPage);
 
+        keyIsenabled = true;
+
     }
-    
+
     private void restart() {
 
         timer = new Teller(60);
@@ -112,32 +113,77 @@ public class Level extends JPanel implements KeyListener {
         label.setForeground(Color.GREEN);
         add(label);
 
-        doolhof = new Doolhof(levelNr);
+        doolhof = new Doolhof(this);
         doolhof.setLocation(60, 50);
         doolhof.setFocusable(true);
         doolhof.requestFocusInWindow();
         add(doolhof);
 
     }
+
     private void btnStartMouseClicked(MouseEvent evt) {
         this.removeAll();
         this.repaint();
         restart();
     }
 
-    public int getLevelNr() {
-        return levelNr;
-    }
-
     public void nextLevel() {
         if (endLevel) {
             this.levelNr = levelNr + 1;
+            this.removeAll();
+            this.repaint();
+            keyIsenabled = false;
+            nieuwLevel();
         }
+    }
+
+    private void nieuwLevel() {
+
+        timer = new Teller(0);
+        timer.setBounds(600, 10, 100, 30);
+        timer.setVisible(false);
+        add(timer);
+
+        startknop = new JButton("Start");
+        startknop.setForeground(Color.GREEN);
+        startknop.setBackground(Color.BLACK);
+        startknop.setBounds(600, 10, 80, 30);
+        KnopHandler kh = new KnopHandler();
+        startknop.addActionListener(kh);
+        add(startknop);
+
+        opnieuw = new JButton("Restart");
+        opnieuw.setForeground(Color.GREEN);
+        opnieuw.setBackground(Color.BLACK);
+        opnieuw.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                btnStartMouseClicked(evt);
+            }
+        });
+        opnieuw.setBounds(700, 10, 80, 30);
+        opnieuw.setVisible(false);
+        add(opnieuw);
+
+        label = new JLabel("Level " + levelNr);
+        label.setFont(new Font("SansSerif", Font.BOLD, 24));
+        label.setBounds(100, 0, 100, 50);
+        label.setForeground(Color.GREEN);
+        add(label);
+
+        doolhof = new Doolhof(this);
+
+        doolhof.setLocation(60, 50);
+        add(doolhof);
     }
 
     public void setEndLevel(Boolean endLevel) {
         this.endLevel = endLevel;
+    }
 
+    public int getLevelNr() {
+        return levelNr;
     }
 
     class KnopHandler implements ActionListener {
@@ -146,21 +192,33 @@ public class Level extends JPanel implements KeyListener {
             if (e.getSource() == startknop) {
                 timer.setTeller(60);
                 timer.setVisible(true);
-
                 startknop.setVisible(false);
                 label.setVisible(true);
                 opnieuw.setVisible(true);
                 doolhof.setVisible(true);
                 timer.startTimer();
             }
+            if ((e.getSource() == startknop) && (levelNr > 1)) {
+                timer.setTeller(60);
+                timer.setVisible(true);
+                startknop.setVisible(false);
+                label.setVisible(true);
+                opnieuw.setVisible(true);
+                keyIsenabled = true;
+                timer.startTimer();
+
+            }
+
         }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        doolhof.keyPressed(e);
+        if (keyIsenabled == true) {
+            doolhof.keyPressed(e);
+        }
     }
-
+  
     @Override
     public void keyTyped(KeyEvent e) {
         //throw new UnsupportedOperationException("Not supported yet.");
