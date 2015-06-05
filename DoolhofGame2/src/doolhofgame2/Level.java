@@ -17,12 +17,12 @@ public class Level extends JPanel implements KeyListener {
     private Boolean endLevel;
     private Boolean gameOver;
     private Doolhof doolhof;
-    private int levelNr = 1;
-    private Teller timer;
+    private int levelNr;
+    protected Teller timer;
     private JLabel label, imgPage;
     private JButton opnieuw, startknop;
     private ImageIcon image1;
-    private boolean keyIsenabled = false;
+    private boolean keyIsenabled;
 
     public Level() {
 
@@ -30,6 +30,8 @@ public class Level extends JPanel implements KeyListener {
         setBackground(Color.BLACK);
         setSize(900, 700);
         image1 = new ImageIcon(getClass().getResource("/resources/Slide1.png"));
+        levelNr=1;
+        keyIsenabled = false;
         start();
 
     }
@@ -54,13 +56,7 @@ public class Level extends JPanel implements KeyListener {
         opnieuw = new JButton("Restart");
         opnieuw.setForeground(Color.GREEN);
         opnieuw.setBackground(Color.BLACK);
-        opnieuw.addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                btnStartMouseClicked(evt);
-            }
-        });
+        opnieuw.addActionListener(kh);
         opnieuw.setBounds(700, 10, 80, 30);
         opnieuw.setVisible(false);
         add(opnieuw);
@@ -90,20 +86,16 @@ public class Level extends JPanel implements KeyListener {
 
     private void restart() {
 
-        timer = new Teller(60);
+        timer = new Teller(30);
         timer.setBounds(600, 10, 100, 30);
+        timer.setVisible(true);
         add(timer);
 
         opnieuw = new JButton("Restart");
         opnieuw.setForeground(Color.GREEN);
         opnieuw.setBackground(Color.BLACK);
-        opnieuw.addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                btnStartMouseClicked(evt);
-            }
-        });
+        Level.KnopHandler kh = new Level.KnopHandler();
+        opnieuw.addActionListener(kh);
         opnieuw.setBounds(700, 10, 80, 30);
         add(opnieuw);
 
@@ -119,12 +111,6 @@ public class Level extends JPanel implements KeyListener {
         doolhof.requestFocusInWindow();
         add(doolhof);
 
-    }
-
-    private void btnStartMouseClicked(MouseEvent evt) {
-        this.removeAll();
-        this.repaint();
-        restart();
     }
 
     public void nextLevel() {
@@ -155,13 +141,7 @@ public class Level extends JPanel implements KeyListener {
         opnieuw = new JButton("Restart");
         opnieuw.setForeground(Color.GREEN);
         opnieuw.setBackground(Color.BLACK);
-        opnieuw.addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                btnStartMouseClicked(evt);
-            }
-        });
+        opnieuw.addActionListener(kh);
         opnieuw.setBounds(700, 10, 80, 30);
         opnieuw.setVisible(false);
         add(opnieuw);
@@ -190,7 +170,7 @@ public class Level extends JPanel implements KeyListener {
 
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == startknop) {
-                timer.setTeller(60);
+                timer.setTeller(30);
                 timer.setVisible(true);
                 startknop.setVisible(false);
                 label.setVisible(true);
@@ -199,7 +179,7 @@ public class Level extends JPanel implements KeyListener {
                 timer.startTimer();
             }
             if ((e.getSource() == startknop) && (levelNr > 1)) {
-                timer.setTeller(60);
+                timer.setTeller(30);
                 timer.setVisible(true);
                 startknop.setVisible(false);
                 label.setVisible(true);
@@ -207,6 +187,12 @@ public class Level extends JPanel implements KeyListener {
                 keyIsenabled = true;
                 timer.startTimer();
 
+            }
+            if (e.getSource() == opnieuw) {
+                removeAll();
+                repaint();
+                restart();
+                timer.startTimer();
             }
 
         }
@@ -218,7 +204,7 @@ public class Level extends JPanel implements KeyListener {
             doolhof.keyPressed(e);
         }
     }
-  
+
     @Override
     public void keyTyped(KeyEvent e) {
         //throw new UnsupportedOperationException("Not supported yet.");

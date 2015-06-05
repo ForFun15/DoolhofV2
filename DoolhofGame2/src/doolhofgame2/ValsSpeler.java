@@ -12,21 +12,34 @@ import javax.swing.ImageIcon;
  * @author Karen
  */
 public class ValsSpeler extends SpelItem {
-    
-    public ValsSpeler(){
-    image = new ImageIcon(getClass().getResource("/resources/estrella.gif")).getImage();
-  
+
+    private Level level;
+
+    public ValsSpeler() {
+        image = new ImageIcon(getClass().getResource("/resources/estrella.gif")).getImage();
+
     }
-    
-     @Override
+
+    public ValsSpeler(Level level) {
+        this.level = level;
+        image = new ImageIcon(getClass().getResource("/resources/estrella.gif")).getImage();
+
+    }
+
+    @Override
     public void voerActie() {
         super.voerActie();
-        
+        actie();
     }
-    
-    protected void paintComponent(Graphics g){
+
+    private void actie() {
+        level.timer.setTeller(20);
+        level.timer.repaint();
+    }
+
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
-        
+
     }
 }
