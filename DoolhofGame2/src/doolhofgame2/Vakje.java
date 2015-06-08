@@ -18,10 +18,11 @@ public class Vakje extends JComponent {
     protected Image image;
     public Vakje[] buren = new Vakje[4];
     //north 0, east 1, south 2, west 3
-    protected int posX, posY;
+    protected int posX, posY, x, y;
     protected boolean isWalkable;
     protected SpelItem spelitem = null;
     protected Speler speler;
+    protected boolean isVisited;
 
     public Vakje() {
     }
@@ -51,6 +52,12 @@ public class Vakje extends JComponent {
         g.drawImage(image, 0, 0, this);
 
     }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+    
+    
 
     public int getPosX() {
         return posX;

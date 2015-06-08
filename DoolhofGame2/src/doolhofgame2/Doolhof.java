@@ -24,7 +24,7 @@ public class Doolhof extends JPanel {
 
     public Doolhof(Level level) {
         this.level = level;
-        
+
         setSize(780, 600);
         setLayout(null);
         File file = getFile(level.getLevelNr());
@@ -36,9 +36,10 @@ public class Doolhof extends JPanel {
         addVakjes();
 
     }
-      public Doolhof(int LevelNr) {
-       // this.level = level;
-        
+
+    public Doolhof(int LevelNr) {
+        // this.level = level;
+
         setSize(780, 600);
         setLayout(null);
         File file = getFile(LevelNr);
@@ -113,6 +114,7 @@ public class Doolhof extends JPanel {
                     } else if (num == 6) {
                         Helper helper = new Helper();
                         Pad pHelper = new Pad(helper);
+                        helper.setPad(pHelper);
                         matrix[i][j] = pHelper;
                     }
 
@@ -137,6 +139,8 @@ public class Doolhof extends JPanel {
             for (int j = 0; j < Y; j++) {
                 matrix[i][j].setPosX(i * 30);
                 matrix[i][j].setPosY(j * 30);
+                matrix[i][j].x = i;
+                matrix[i][j].y = j;
                 matrix[i][j].setBounds(matrix[i][j].getPosX(), matrix[i][j].getPosY(), 30, 30);
                 add(matrix[i][j]);
             }

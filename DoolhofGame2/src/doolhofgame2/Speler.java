@@ -102,8 +102,7 @@ public class Speler extends JComponent {
                 pad.setSpelitem(null);
             } else {
                 pad.getSpelitem().voerActie();
-                System.out.println("get" + pad.getSpelitem());
-                pad.setSpelitem(null);
+                //pad.setSpelitem(null);
 
             }
         }
