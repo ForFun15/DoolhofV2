@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  */
 public class Vriend extends SpelItem {
 
-    private Level level;
+  private Level level;
 
     public Vriend() {
         image = new ImageIcon(getClass().getResource("/resources/imgVriend.png")).getImage();

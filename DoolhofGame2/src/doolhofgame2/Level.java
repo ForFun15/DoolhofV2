@@ -30,7 +30,7 @@ public class Level extends JPanel implements KeyListener {
         setBackground(Color.BLACK);
         setSize(900, 700);
         image1 = new ImageIcon(getClass().getResource("/resources/Slide1.png"));
-        levelNr=1;
+        levelNr = 1;
         keyIsenabled = false;
         start();
 
@@ -116,10 +116,17 @@ public class Level extends JPanel implements KeyListener {
     public void nextLevel() {
         if (endLevel) {
             this.levelNr = levelNr + 1;
-            this.removeAll();
-            this.repaint();
-            keyIsenabled = false;
-            nieuwLevel();
+            if (levelNr < 4) {
+                this.removeAll();
+                this.repaint();
+                keyIsenabled = false;
+                nieuwLevel();
+            }else{
+                this.removeAll();
+                this.repaint();
+                setGameOver(true);               
+                            
+            }
         }
     }
 
@@ -165,6 +172,17 @@ public class Level extends JPanel implements KeyListener {
     public int getLevelNr() {
         return levelNr;
     }
+
+    public void setGameOver(Boolean gameOver) {
+        this.gameOver = gameOver;
+        
+    }
+
+    public Boolean getGameOver() {
+        return gameOver;
+    }
+    
+    
 
     class KnopHandler implements ActionListener {
 

@@ -26,10 +26,9 @@ public class Main extends JFrame {
 
     }
 
-
     public void init() {
 
-        
+
         level = new Level();
         level.addKeyListener(level);
         level.setFocusable(true);
@@ -46,7 +45,5 @@ public class Main extends JFrame {
         // TODO code application logic here
         Main principaal = new Main();
         principaal.init();
-
-
     }
 }

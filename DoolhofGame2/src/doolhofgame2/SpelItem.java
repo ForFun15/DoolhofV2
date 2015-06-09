@@ -18,12 +18,14 @@ public class SpelItem extends JComponent {
     protected boolean isPickable = false;
     protected Pad pad;
     protected Speler speler;
+  
     
 
     public SpelItem() {
     }
 
     public void voerActie() {
+        
     }
 
     public void voerActie(int d) {

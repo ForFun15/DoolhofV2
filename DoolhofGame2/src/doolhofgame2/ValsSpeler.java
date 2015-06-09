@@ -14,15 +14,15 @@ import javax.swing.ImageIcon;
 public class ValsSpeler extends SpelItem {
 
     private Level level;
-
+    
     public ValsSpeler() {
-        image = new ImageIcon(getClass().getResource("/resources/estrella.gif")).getImage();
+        image = new ImageIcon(getClass().getResource("/resources/clockY.png")).getImage();
 
     }
 
     public ValsSpeler(Level level) {
         this.level = level;
-        image = new ImageIcon(getClass().getResource("/resources/estrella.gif")).getImage();
+        image = new ImageIcon(getClass().getResource("/resources/clockY.png")).getImage();
 
     }
 
