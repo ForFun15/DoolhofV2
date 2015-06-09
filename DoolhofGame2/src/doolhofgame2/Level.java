@@ -20,8 +20,8 @@ public class Level extends JPanel implements KeyListener {
     private int levelNr;
     protected Teller timer;
     private JLabel label, imgPage;
-    private JButton opnieuw, startknop;
-    private ImageIcon image1;
+    private JButton opnieuw, startknop, sluiten;
+    private ImageIcon image1, image2;
     private boolean keyIsenabled;
 
     public Level() {
@@ -30,6 +30,7 @@ public class Level extends JPanel implements KeyListener {
         setBackground(Color.BLACK);
         setSize(900, 700);
         image1 = new ImageIcon(getClass().getResource("/resources/Slide1.png"));
+        image2 = new ImageIcon(getClass().getResource("/resources/gameover.png"));
         levelNr = 1;
         keyIsenabled = false;
         start();
@@ -38,7 +39,7 @@ public class Level extends JPanel implements KeyListener {
 
     private void start() {
 
-        timer = new Teller(0);
+        timer = new Teller(this);
         timer.setBounds(600, 10, 100, 30);
         timer.setVisible(false);
         add(timer);
@@ -86,7 +87,7 @@ public class Level extends JPanel implements KeyListener {
 
     private void restart() {
 
-        timer = new Teller(30);
+        timer = new Teller(this);
         timer.setBounds(600, 10, 100, 30);
         timer.setVisible(true);
         add(timer);
@@ -121,18 +122,18 @@ public class Level extends JPanel implements KeyListener {
                 this.repaint();
                 keyIsenabled = false;
                 nieuwLevel();
-            }else{
-                this.removeAll();
-                this.repaint();
-                setGameOver(true);               
-                            
+            } else {
+                setLevelNr(1);
+                setGameOver(true);
+
+
             }
         }
     }
 
     private void nieuwLevel() {
 
-        timer = new Teller(0);
+        timer = new Teller(this);
         timer.setBounds(600, 10, 100, 30);
         timer.setVisible(false);
         add(timer);
@@ -165,6 +166,35 @@ public class Level extends JPanel implements KeyListener {
         add(doolhof);
     }
 
+    private void gameOver() {
+
+        imgPage = new JLabel(image2);
+        imgPage.setBounds(0, 50, 900, 650);
+        imgPage.setVisible(true);
+        add(imgPage);
+        
+        opnieuw = new JButton("Restart");
+        opnieuw.setForeground(Color.GREEN);
+        opnieuw.setBackground(Color.BLACK);
+        KnopHandler kh = new KnopHandler();
+        opnieuw.addActionListener(kh);
+        opnieuw.setBounds(320, 500, 80, 30);
+        opnieuw.setVisible(true);
+        add(opnieuw);
+                
+        sluiten = new JButton("Sluiten");
+        sluiten.setForeground(Color.GREEN);
+        sluiten.setBackground(Color.BLACK);
+        sluiten.setBounds(500 , 500, 80, 30);
+        sluiten.addActionListener(kh);
+        add(sluiten);
+        
+        
+        
+        
+
+    }
+
     public void setEndLevel(Boolean endLevel) {
         this.endLevel = endLevel;
     }
@@ -173,22 +203,30 @@ public class Level extends JPanel implements KeyListener {
         return levelNr;
     }
 
+    public void setLevelNr(int levelNr) {
+        this.levelNr = levelNr;
+    }
+    
+    
+
     public void setGameOver(Boolean gameOver) {
         this.gameOver = gameOver;
+        this.removeAll();
+        this.repaint();
+        gameOver();
         
+
     }
 
     public Boolean getGameOver() {
         return gameOver;
     }
-    
-    
 
     class KnopHandler implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == startknop) {
-                timer.setTeller(30);
+                //timer.setTeller(30);
                 timer.setVisible(true);
                 startknop.setVisible(false);
                 label.setVisible(true);
@@ -197,7 +235,7 @@ public class Level extends JPanel implements KeyListener {
                 timer.startTimer();
             }
             if ((e.getSource() == startknop) && (levelNr > 1)) {
-                timer.setTeller(30);
+                //timer.setTeller(30);
                 timer.setVisible(true);
                 startknop.setVisible(false);
                 label.setVisible(true);
@@ -211,6 +249,9 @@ public class Level extends JPanel implements KeyListener {
                 repaint();
                 restart();
                 timer.startTimer();
+            }
+            if(e.getSource()== sluiten){
+                System.exit(0);
             }
 
         }

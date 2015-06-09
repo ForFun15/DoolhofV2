@@ -35,25 +35,53 @@ public class Bazooka extends SpelItem {
     public void voerActie(int dir) {
 
         if (dir == 0) {
-            if (speler.getPad().getNorth() instanceof Muur) {
-                speler.getPad().getNorth().setIsWalkable(true);
-            }
+            Vakje north = speler.getPad().getNorth();
+            int muur = 0;
+            do {
+                if (north instanceof Muur) {
+                    north.setIsWalkable(true);
+                    muur = 1;
+                } else {
+                    north = north.getNorth();
+                }
+            } while (muur == 0);
+
         }
         if (dir == 1) {
-
-            if (speler.getPad().getEast()instanceof Muur) {
-                speler.getPad().getEast().setIsWalkable(true);
-            }
+            Vakje east = speler.getPad().getEast();
+            int muur = 0;
+            do {
+                if (east instanceof Muur) {
+                    east.setIsWalkable(true);
+                    muur = 1;
+                } else {
+                    east = east.getEast();
+                }
+            } while (muur == 0);
         }
         if (dir == 2) {
-            if (speler.getPad().getSouth()instanceof Muur) {
-                speler.getPad().getSouth().setIsWalkable(true);
-            }
+            Vakje south = speler.getPad().getSouth();
+            int muur = 0;
+            do {
+                if (south instanceof Muur) {
+                    south.setIsWalkable(true);
+                    muur = 1;
+                } else {
+                    south = south.getSouth();
+                }
+            } while (muur == 0);
         }
         if (dir == 3) {
-            if (speler.getPad().getWest()instanceof Muur) {
-                speler.getPad().getWest().setIsWalkable(true);
-            }
+            Vakje west = speler.getPad().getWest();
+            int muur = 0;
+            do {
+                if (west instanceof Muur) {
+                    west.setIsWalkable(true);
+                    muur = 1;
+                } else {
+                    west = west.getSouth();
+                }
+            } while (muur == 0);
         }
 
 

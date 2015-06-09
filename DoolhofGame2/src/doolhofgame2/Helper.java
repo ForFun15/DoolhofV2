@@ -19,17 +19,18 @@ import javax.swing.ImageIcon;
 public class Helper extends SpelItem {
 
     private ArrayList<Vakje> popVakjes;
+    private Stack<Vakje> weg;
 
     public Helper() {
         image = new ImageIcon(getClass().getResource("/resources/imgHelp2.png")).getImage();
         popVakjes = new ArrayList<>();
+        weg = new Stack<>();
     }
 
     
     @Override
     public void voerActie() {
         super.voerActie();
-        Stack<Vakje> weg = new Stack<>();
         boolean backtracking = backtracking(this.pad, weg);
         
     }
@@ -46,7 +47,9 @@ public class Helper extends SpelItem {
         for (Iterator<Vakje> it = weg.iterator(); it.hasNext();) {
             Vakje vk = it.next();
             if (vk.getSpelitem() == null) {
-                vk.setImage(imageWeg);
+                SpelItem spelItem = new SpelItem();
+                spelItem.image = imageWeg;
+                vk.setSpelitem(spelItem);
                 vk.repaint();
             }
         }

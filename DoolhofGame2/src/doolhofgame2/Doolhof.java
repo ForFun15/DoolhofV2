@@ -38,8 +38,7 @@ public class Doolhof extends JPanel {
     }
 
     public Doolhof(int LevelNr) {
-        // this.level = level;
-
+       
         setSize(780, 600);
         setLayout(null);
         File file = getFile(LevelNr);
@@ -53,27 +52,22 @@ public class Doolhof extends JPanel {
     }
 
     private File getFile(int level) {
-        //   File file = null;
+     
         files = new ArrayList<>();
-
-
         files.add(new File("doolhof1.txt"));
         files.add(new File("doolhof2.txt"));
         files.add(new File("doolhof3.txt"));
-        //Collections.shuffle(files);
-        File file = files.get(level - 1);
+       
+        File file = files.get(level-1);
         return (file);
 
     }
 
-    private void fillMatrix(File file) {//int levelNr
+    private void fillMatrix(File file) {
         FileReader arch;
         StringTokenizer st;
         BufferedReader buff = null;
         matrix = new Vakje[X][Y];
-        Random rand = new Random();
-        int imgMuur = rand.nextInt(3) + 0;
-
         try {
             arch = new FileReader(file); // Bestand lezen
             buff = new BufferedReader(arch); // Buffer lezen
@@ -87,7 +81,7 @@ public class Doolhof extends JPanel {
                 for (int j = 0; j < Y; ++j) {
                     int num = Integer.parseInt(st.nextToken());
                     if (num == 1) {
-                        Muur muur = new Muur(imgMuur);
+                        Muur muur = new Muur();
                         matrix[i][j] = muur;
                     } else if (num == 0) {
                         Pad pad = new Pad();

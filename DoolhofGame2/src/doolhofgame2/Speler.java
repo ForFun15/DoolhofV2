@@ -27,9 +27,6 @@ public class Speler extends JComponent {
         loadImages();
     }
 
-//    public Speler(Pad pad) {
-//        setPad(pad);
-//    }
     public void setPad(Vakje pad) {
         this.pad = pad;
         pad.setSpeler(this);
@@ -38,8 +35,6 @@ public class Speler extends JComponent {
     public Vakje getPad() {
         return pad;
     }
-    
-    
 
     public void setGepakt(SpelItem bazooka) {
         this.gepakt = bazooka;
@@ -65,7 +60,6 @@ public class Speler extends JComponent {
         if (gepakt != null) {
             gepakt.voerActie(dir);
             setGepakt(null);
-            //System.out.println("bazookka" + getBazooka());
         }
     }
 
@@ -102,7 +96,7 @@ public class Speler extends JComponent {
                 pad.setSpelitem(null);
             } else {
                 pad.getSpelitem().voerActie();
-                //pad.setSpelitem(null);
+                
 
             }
         }

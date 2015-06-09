@@ -5,8 +5,6 @@
 package doolhofgame2;
 
 import java.awt.Graphics;
-import java.awt.Image;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /**
@@ -15,8 +13,8 @@ import javax.swing.ImageIcon;
  */
 public class Muur extends Vakje {
     
-    public Muur(int i) {
-        image = switchImage(i);
+    public Muur() {
+        image = new ImageIcon(getClass().getResource("/resources/muur.png")).getImage();        
         isWalkable = false;
     }
     
@@ -40,7 +38,7 @@ public class Muur extends Vakje {
     }
     
     public void setWalkableImage() {
-        this.image = new ImageIcon(getClass().getResource("/resources/pad.png")).getImage();
+        this.image = new ImageIcon(getClass().getResource("/resources/muurKapot.png")).getImage();
     }
     
     protected void paintComponent(Graphics g) {
@@ -52,14 +50,5 @@ public class Muur extends Vakje {
         
     }
     
-    private Image switchImage(int i) {
-        
-        ArrayList<Image> listImage = new ArrayList<>();
-        listImage.add(new ImageIcon(getClass().getResource("/resources/muur.png")).getImage());
-        listImage.add(new ImageIcon(getClass().getResource("/resources/muur1.png")).getImage());
-        listImage.add(new ImageIcon(getClass().getResource("/resources/muur2.png")).getImage());
-        listImage.add(new ImageIcon(getClass().getResource("/resources/muur3.png")).getImage());
-        
-        return listImage.get(i);
-    }
+   
 }
