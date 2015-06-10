@@ -18,9 +18,9 @@ public class Teller extends JPanel {
     private javax.swing.Timer timer;
     private Level level;
 
-    public Teller(Level level) {
-        this.teller = 30;// aantal seconden
-        this.level=level;
+    public Teller(Level level, int sec) {
+        this.teller = sec;// aantal seconden
+        this.level = level;
         timer = new javax.swing.Timer(1000, new Teller.TimerHandler());
         setBackground(Color.BLACK);
     }
@@ -47,6 +47,10 @@ public class Teller extends JPanel {
     }
 
     public void setTeller(int teller) {
+        this.teller = teller;
+    }
+    
+    public void addTime(int teller){
         this.teller += teller;
     }
 
@@ -57,8 +61,10 @@ public class Teller extends JPanel {
                 teller--;
                 repaint();
             } else {
-                timer.stop();
-                level.setGameOver(true);
+                if (teller < 1) {
+                    stopTimer();
+                    level.setGameOver(true);
+                }
             }
 
         }

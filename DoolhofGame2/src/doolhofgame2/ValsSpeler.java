@@ -33,8 +33,9 @@ public class ValsSpeler extends SpelItem {
     }
 
     private void actie() {
-        level.timer.setTeller(20);
+        level.timer.addTime(20);
         level.timer.repaint();
+        System.out.println(level.timer.getTeller());
     }
 
     protected void paintComponent(Graphics g) {

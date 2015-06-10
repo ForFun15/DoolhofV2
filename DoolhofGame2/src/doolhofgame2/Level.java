@@ -39,7 +39,7 @@ public class Level extends JPanel implements KeyListener {
 
     private void start() {
 
-        timer = new Teller(this);
+        timer = new Teller(this, 0);
         timer.setBounds(600, 10, 100, 30);
         timer.setVisible(false);
         add(timer);
@@ -87,7 +87,7 @@ public class Level extends JPanel implements KeyListener {
 
     private void restart() {
 
-        timer = new Teller(this);
+        timer.setTeller(0);
         timer.setBounds(600, 10, 100, 30);
         timer.setVisible(true);
         add(timer);
@@ -122,6 +122,7 @@ public class Level extends JPanel implements KeyListener {
                 this.repaint();
                 keyIsenabled = false;
                 nieuwLevel();
+
             } else {
                 setLevelNr(1);
                 setGameOver(true);
@@ -133,7 +134,7 @@ public class Level extends JPanel implements KeyListener {
 
     private void nieuwLevel() {
 
-        timer = new Teller(this);
+        timer.setTeller(60);
         timer.setBounds(600, 10, 100, 30);
         timer.setVisible(false);
         add(timer);
@@ -172,7 +173,7 @@ public class Level extends JPanel implements KeyListener {
         imgPage.setBounds(0, 50, 900, 650);
         imgPage.setVisible(true);
         add(imgPage);
-        
+
         opnieuw = new JButton("Restart");
         opnieuw.setForeground(Color.GREEN);
         opnieuw.setBackground(Color.BLACK);
@@ -181,17 +182,17 @@ public class Level extends JPanel implements KeyListener {
         opnieuw.setBounds(320, 500, 80, 30);
         opnieuw.setVisible(true);
         add(opnieuw);
-                
+
         sluiten = new JButton("Sluiten");
         sluiten.setForeground(Color.GREEN);
         sluiten.setBackground(Color.BLACK);
-        sluiten.setBounds(500 , 500, 80, 30);
+        sluiten.setBounds(500, 500, 80, 30);
         sluiten.addActionListener(kh);
         add(sluiten);
-        
-        
-        
-        
+
+
+
+
 
     }
 
@@ -206,15 +207,14 @@ public class Level extends JPanel implements KeyListener {
     public void setLevelNr(int levelNr) {
         this.levelNr = levelNr;
     }
-    
-    
 
     public void setGameOver(Boolean gameOver) {
         this.gameOver = gameOver;
         this.removeAll();
         this.repaint();
+        //setLevelNr(1);
         gameOver();
-        
+
 
     }
 
@@ -226,7 +226,7 @@ public class Level extends JPanel implements KeyListener {
 
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == startknop) {
-                //timer.setTeller(30);
+                timer.setTeller(30);
                 timer.setVisible(true);
                 startknop.setVisible(false);
                 label.setVisible(true);
@@ -235,7 +235,8 @@ public class Level extends JPanel implements KeyListener {
                 timer.startTimer();
             }
             if ((e.getSource() == startknop) && (levelNr > 1)) {
-                //timer.setTeller(30);
+                timer.setTeller(30);
+                System.out.println(timer.getTeller());
                 timer.setVisible(true);
                 startknop.setVisible(false);
                 label.setVisible(true);
@@ -250,7 +251,7 @@ public class Level extends JPanel implements KeyListener {
                 restart();
                 timer.startTimer();
             }
-            if(e.getSource()== sluiten){
+            if (e.getSource() == sluiten) {
                 System.exit(0);
             }
 
