@@ -64,19 +64,19 @@ public class Speler extends JComponent {
     }
 
     public void move(int d) {
-
-        if (canMove(d)) {
-            Vakje buur = getBuur(d);
-            raakSpelItem(buur);
+        Vakje buur = getBuur(d);
+        if (canMove(buur)) {
+            if (buur.getSpelitem() != null) {
+                raakSpelItem(buur);
+            }
             swapPad(pad, buur);
+
         }
 
     }
 
-    public boolean canMove(int d) {
+    public boolean canMove(Vakje buur) {
         boolean result = false;
-        Vakje buur = getBuur(d);
-
         if (buur == null) {
             result = false;
         } else {
@@ -90,17 +90,12 @@ public class Speler extends JComponent {
 
     private void raakSpelItem(Vakje pad) {
 
-        if (pad.getSpelitem() != null) {
-            if (pad.getSpelitem().isPickable == true) {
-                setGepakt((Bazooka) pad.getSpelitem());
-                pad.setSpelitem(null);
-            } else {
-                pad.getSpelitem().voerActie();
-                
-
-            }
+        if (pad.getSpelitem().isPickable == true) {
+            setGepakt((Bazooka) pad.getSpelitem());
+            pad.setSpelitem(null);
+        } else {
+            pad.getSpelitem().voerActie();
         }
-
     }
 
     private Vakje getBuur(int d) {
@@ -108,15 +103,21 @@ public class Speler extends JComponent {
         if (d == 0) {
             buur = pad.getNorth();
             setDir(0);
-        } else if (d == 1) {
-            buur = pad.getEast();
-            setDir(1);
-        } else if (d == 2) {
-            buur = pad.getSouth();
-            setDir(2);
-        } else if (d == 3) {
-            buur = pad.getWest();
-            setDir(3);
+        } else {
+            if (d == 1) {
+                buur = pad.getEast();
+                setDir(1);
+            } else {
+                if (d == 2) {
+                    buur = pad.getSouth();
+                    setDir(2);
+                } else {
+                    if (d == 3) {
+                        buur = pad.getWest();
+                        setDir(3);
+                    }
+                }
+            }
         }
         return buur;
     }

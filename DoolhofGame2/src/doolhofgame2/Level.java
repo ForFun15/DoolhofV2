@@ -36,6 +36,7 @@ public class Level extends JPanel implements KeyListener {
         start();
 
     }
+   
 
     private void start() {
 
@@ -236,7 +237,6 @@ public class Level extends JPanel implements KeyListener {
             }
             if ((e.getSource() == startknop) && (levelNr > 1)) {
                 timer.setTeller(30);
-                System.out.println(timer.getTeller());
                 timer.setVisible(true);
                 startknop.setVisible(false);
                 label.setVisible(true);
