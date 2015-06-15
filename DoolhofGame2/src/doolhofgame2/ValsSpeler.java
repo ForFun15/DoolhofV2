@@ -14,33 +14,5 @@ import javax.swing.ImageIcon;
 public class ValsSpeler extends SpelItem {
 
     private Level level;
-    
-    public ValsSpeler() {
-        image = new ImageIcon(getClass().getResource("/resources/clockY.png")).getImage();
-
-    }
-
-    public ValsSpeler(Level level) {
-        this.level = level;
-        image = new ImageIcon(getClass().getResource("/resources/clockY.png")).getImage();
-
-    }
-
-    @Override
-    public void voerActie() {
-        super.voerActie();
-        actie();
-    }
-
-    private void actie() {
-        level.timer.addTime(20);
-        level.timer.repaint();
-        System.out.println(level.timer.getTeller());
-    }
-
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(image, 0, 0, this);
-
-    }
+  
 }

@@ -5,13 +5,15 @@
 package doolhofgame2;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 
 /**
  *
  * @author Karen
  */
-public class Vriend extends SpelItem {
+public class Vijand extends JComponent {
 
- 
+  
 }
